@@ -1,3 +1,6 @@
 [submodule "backend/resilientdb"]
 	path = backend/resilientdb
 	url = https://github.com/sipilla/resilientdb.git
+[submodule "backend/ResilientDB-GraphQL"]
+	path = backend/ResilientDB-GraphQL
+	url = https://github.com/sipilla/ResilientDB-GraphQL.git
