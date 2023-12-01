@@ -10,15 +10,6 @@ client = AsyncIOMotorClient(MONGO_DETAILS)
 database = client.users
 user_collection = database.get_collection("users_collection")
 
-# Pydantic model for user
-class User(BaseModel):
-    name: constr(min_length=1) = Field(...)
-    role: constr(min_length=1) = Field(...)
-    registration_date_time: datetime = Field(default_factory=datetime.now)
-    identification_number: constr(regex=r'^[0-9]{9}$') = Field(...)
-    driving_license_number: constr(min_length=8, max_length=10) = Field(...)
-    email: EmailStr = Field(...)
-    password: constr(min_length=10) = Field(...)
 
 # Helper function to convert user document to dict
 def user_helper(user) -> dict:
@@ -32,6 +23,37 @@ def user_helper(user) -> dict:
         "email": user["email"],
         # Exclude password for security
     }
+
+
+def car_helper(car) -> dict:
+    return {
+        "id": str(car["_id"]),
+        "engine_number": car["engine_number"],
+        "manufacturing_date": car["manufacturing_date"].isoformat(),
+        "manufacturer": car["manufacturer"],
+        "number_plate": car["number_plate"],
+        "color": car["color"],
+        "seating": car["seating"],
+        "transmission": car.get("transmission"),
+        "wheel_base": car.get("wheel_base"),
+        "drive_type": car.get("drive_type"),
+        "ground_clearance": car.get("ground_clearance"),
+        "fuel": car.get("fuel"),
+        "class": car.get("class"),
+        "model": car.get("model"),
+        "current_owner_name": car["current_owner_name"],
+        "owners_history": car["owners_history"],
+        "chassis_number": car["chassis_number"],
+        "driving_license_number": car["driving_license_number"],
+        "insurance_number": car["insurance_number"],
+        "insurance_expiry_date": car["insurance_expiry_date"].isoformat(),
+        "insurance_history": car["insurance_history"],
+        "current_mileage": car["current_mileage"],
+        "current_odometer_reading": car["current_odometer_reading"],
+        "service_center_history": car["service_center_history"]
+    }
+
+
 
 # Add a new user to the database
 async def add_user(user_data: dict) -> dict:

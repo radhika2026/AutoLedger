@@ -72,22 +72,21 @@ class Car(BaseModel):
     class Config:
         orm_mode = True
 
+from pydantic import BaseModel, Field
+
 class ErrorResponseModel(BaseModel):
     status_code: int = Field(default=500, example=500)
     message: str = Field(default="Failure", example="Failure")
-    error: str = Field(..., example="An error occurred")
+    error: str = Field(..., example="An internal server error occurred")
 
     class Config:
         schema_extra = {
             "example": {
                 "status_code": 500,
                 "message": "Failure",
-                "error": "An error occurred"
+                "error": "An internal server error occurred"
             }
         }
-
-
-
 
 class SuccessResponseModel(BaseModel):
     status_code: int = Field(default=200, example=200)
