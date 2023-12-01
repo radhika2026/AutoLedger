@@ -65,3 +65,14 @@ def ResponseModel(data, message):
 
 def ErrorResponseModel(error, code, message):
     return {"error": error, "code": code, "message": message}
+
+
+class SuccessResponseModel(BaseModel):
+    status_code: int = Field(200, example=200)
+    message: str = Field("Successfully executed", example="Successfully executed")
+    user_details: dict = {}
+
+class ErrorResponseModel(BaseModel):
+    status_code: int = Field(500, example=500)
+    message: str = Field("Failure", example="Failure")
+    error: str = Field(..., example="An error occurred")

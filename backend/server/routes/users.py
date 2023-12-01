@@ -1,16 +1,17 @@
 from fastapi import APIRouter, Body, HTTPException, status
 from typing import List
-from server.models.users import User, UserUpdateModel, ResponseModel, ErrorResponseModel
+from server.models.users import User, UserUpdateModel, ResponseModel, ErrorResponseModel, SuccessResponseModel
 from server.database import add_user, retrieve_user, update_user, delete_user
 
 router = APIRouter()
 
 @router.post("/", response_description="Add new user", response_model=User)
 async def create_user(user: User = Body(...)):
-    user = await add_user(user.dict())
-    if user:
-        return ResponseModel(user, "User added successfully.")
-    raise HTTPException(status_code=500, detail="Something went wrong")
+    try:
+        user_details = await add_user(user.dict())
+        return SuccessResponseModel(user_details=user_details, message="User added successfully.")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/{id}", response_description="Get a single user", response_model=User)
 async def get_user(id: str):
