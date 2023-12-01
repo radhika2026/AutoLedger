@@ -4,7 +4,7 @@
 cd resilientdb/
 
 #Comment this out if not the 1st time
-#./INSTALL.sh
+./INSTALL.sh
 
 ./service/tools/kv/server_tools/start_kv_service.sh
 

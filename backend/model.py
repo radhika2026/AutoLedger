@@ -6,11 +6,9 @@ class User(BaseModel):
     role: str  #set
     gov_id: str
     driving_licsence_id: str
-    creator_external_link = 'NULL' 
     location: str
     cost: float
     currency: str
-    view = 1
     tx_id = 'NULL'
 
     def to_asset(self):
