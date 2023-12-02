@@ -49,6 +49,20 @@
   margin-bottom: 2rem; /* Space below the search bar */
 }
 
+.error {
+  color: red;
+  margin-top: 5px;
+}
+
+.navbar-custom .nav-link {
+  color: rgba(0, 0, 0, 0.5); /* Or any other color you have for your links */
+  margin-right: 10px; /* Adjust spacing to match other links */
+}
+
+.navbar-custom .nav-link:hover {
+  color: rgba(0, 0, 0, 0.7); /* Slightly darker on hover, or your preferred hover color */
+}
+
 /* Styles for the form control within the Search component */
 .inline-form .form-control {
   width: auto; /* Or you can use a specific width like 200px */
@@ -62,13 +76,6 @@
 }
 
 /* Adjust styles for smaller screens */
-@media (max-width: 768px) {
-  .modal-dialog-centered {
-    max-width: 90%;
-    margin: 10px auto;
-  }
-}
-
 @media (max-width: 768px) {
   .navbar-custom {
     background-color: rgba(255, 255, 255, 0.95); /* Less transparency for better readability */
@@ -164,17 +171,4 @@ body {
   background-color: #f4f7f6;
   margin: 0;
   padding: 0;
-}
-
-.modal-dialog-centered {
-  max-width: 500px; /* Adjust this value as needed */
-  margin: 30px auto;
-}
-
-.modal-dialog-centered {
-  margin: 5vh auto;
-}
-
-.modal-content {
-  padding: 20px;
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import NavbarComponent from './NavbarComponent';
 import VehicleInfoComponent from './VehicleInfoComponent';
 import VehicleHistoryComponent from './VehicleHistoryComponent';
 import VehicleSpecsComponent from './VehicleSpecsComponent';

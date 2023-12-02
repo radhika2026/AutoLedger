@@ -1,7 +1,8 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import RegistrationModal from './RegistrationModal';
 
-const NavbarComponent = ({ onRegisterClick, onLoginClick }) => {
+const NavbarComponent = ({ onRegisterClick, isModalOpen }) => {
   return (
     <Navbar className="navbar-custom" expand="lg">
       <Navbar.Brand href="/home">AutoLedger</Navbar.Brand>
@@ -10,12 +11,11 @@ const NavbarComponent = ({ onRegisterClick, onLoginClick }) => {
         <Nav className="mr-auto">
           <Nav.Link href="/home">Home</Nav.Link>
           <Nav.Link href="/vehicleinfopage">Vehicle Information</Nav.Link>
-        </Nav>
-        <Nav>
-          <Nav.Link onClick={onRegisterClick}>Register</Nav.Link>
-          <Nav.Link onClick={onLoginClick}>Login</Nav.Link>
+          {/* The following Nav.Link acts as the "Register" button */}
+          <Nav.Link onClick={onRegisterClick} style={{ cursor: 'pointer' }}>Register</Nav.Link>
         </Nav>
       </Navbar.Collapse>
+      <RegistrationModal isOpen={isModalOpen} toggle={onRegisterClick} />
     </Navbar>
   );
 };
