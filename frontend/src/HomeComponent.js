@@ -6,7 +6,7 @@ import SearchComponent from './SearchComponent'; // Import Search component
 
 function HomeComponent() {
   return (
-    
+
     <div className="HomeComponent-background">
       <div className="centered-form">
         <Container className="form-container">
@@ -16,7 +16,7 @@ function HomeComponent() {
       </div>
       <SearchComponent />
     </div>
-    
+
   );
 }
 

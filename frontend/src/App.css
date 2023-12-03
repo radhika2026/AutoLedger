@@ -1,5 +1,6 @@
 .HomeComponent-background {
-  background-image: url('./2.jpg'); /* Add the correct path to your background image */
+  background-image: url('./2.jpg');
+  /* Add the correct path to your background image */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -8,7 +9,8 @@
 }
 
 .navbar-custom {
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  background-color: rgba(255, 255, 255, 0.8);
+  /* Semi-transparent white */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -16,37 +18,48 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 2rem; /* Adjust the padding as needed */
+  padding-top: 2rem;
+  /* Adjust the padding as needed */
 }
 
 .form-container {
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent black */
   padding: 2rem;
   border-radius: 0.5rem;
   margin-top: 2rem;
-  width: 100%; /* Or a fixed width, depending on your design */
-  max-width: 600px; /* Maximum width of the form */
+  width: 100%;
+  /* Or a fixed width, depending on your design */
+  max-width: 600px;
+  /* Maximum width of the form */
 }
 
 .form-heading {
   color: #ffffff;
   text-align: center;
-  margin-bottom: 3rem; /* Increase the bottom margin to create more gap */
+  margin-bottom: 3rem;
+  /* Increase the bottom margin to create more gap */
   /* other styles */
 }
 
 .search-bar-container {
-  padding: 0.5rem 1rem; /* Padding inside the search bar container */
-  margin-top: 1rem; /* Space above the search bar */
-  text-align: right; /* Aligns the form to the right */
+  padding: 0.5rem 1rem;
+  /* Padding inside the search bar container */
+  margin-top: 1rem;
+  /* Space above the search bar */
+  text-align: right;
+  /* Aligns the form to the right */
 }
 
 /* Styles for inline form in the Search component */
 .inline-form {
   display: flex;
-  justify-content: center; /* Center the form on the page */
-  gap: 1rem; /* This creates space between the search input and the button */
-  margin-bottom: 2rem; /* Space below the search bar */
+  justify-content: center;
+  /* Center the form on the page */
+  gap: 1rem;
+  /* This creates space between the search input and the button */
+  margin-bottom: 2rem;
+  /* Space below the search bar */
 }
 
 .error {
@@ -55,30 +68,37 @@
 }
 
 .navbar-custom .nav-link {
-  color: rgba(0, 0, 0, 0.5); /* Or any other color you have for your links */
-  margin-right: 10px; /* Adjust spacing to match other links */
+  color: rgba(0, 0, 0, 0.5);
+  /* Or any other color you have for your links */
+  margin-right: 10px;
+  /* Adjust spacing to match other links */
 }
 
 .navbar-custom .nav-link:hover {
-  color: rgba(0, 0, 0, 0.7); /* Slightly darker on hover, or your preferred hover color */
+  color: rgba(0, 0, 0, 0.7);
+  /* Slightly darker on hover, or your preferred hover color */
 }
 
 /* Styles for the form control within the Search component */
 .inline-form .form-control {
-  width: auto; /* Or you can use a specific width like 200px */
-  flex-grow: 0; /* Prevent the input from growing to fill the flex container */
+  width: auto;
+  /* Or you can use a specific width like 200px */
+  flex-grow: 0;
+  /* Prevent the input from growing to fill the flex container */
 }
 
 /* Styles for the search button within the Search component */
 .inline-form .btn {
-  padding: 0.5rem 1rem; /* Adjust padding to control the size */
+  padding: 0.5rem 1rem;
+  /* Adjust padding to control the size */
   /* Remove margin-right if it's no longer necessary */
 }
 
 /* Adjust styles for smaller screens */
 @media (max-width: 768px) {
   .navbar-custom {
-    background-color: rgba(255, 255, 255, 0.95); /* Less transparency for better readability */
+    background-color: rgba(255, 255, 255, 0.95);
+    /* Less transparency for better readability */
   }
 
   .centered-form {
@@ -166,9 +186,91 @@
   }
 }
 
-/* Any additional global styles */
+/* Global styles */
+
 body {
   background-color: #f4f7f6;
   margin: 0;
   padding: 0;
+  font-family: sans-serif;
+}
+
+/* General form styles */
+
+.form-container {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  margin: 2rem auto;
+  max-width: 800px;
+  width: 90%;
+}
+
+.form-heading {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: #80bfff;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0069d9;
+}
+
+/* Specific styles for DMV pages */
+
+.dmv-page .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.dmv-page .form-label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.dmv-page .form-control {
+  font-size: 0.8rem;
+}
+
+.dmv-page .btn {
+  font-size: 0.8rem;
+}
+
+/* Media queries for responsive design */
+
+@media (max-width: 768px) {
+  .form-container {
+    max-width: 100%;
+  }
 }
