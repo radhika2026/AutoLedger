@@ -10,6 +10,7 @@ const NavbarComponent = ({ onRegisterClick, onSignInClick }) => {
         <Nav className="mr-auto">
           <Nav.Link href="/home">Home</Nav.Link>
           <Nav.Link href="/vehicleinfopage">Vehicle Information</Nav.Link>
+          <Nav.Link href="/ServiceCenterForm">Service Center</Nav.Link>
           <Nav.Link onClick={onRegisterClick} style={{ cursor: 'pointer' }}>Register</Nav.Link>
           <Nav.Link onClick={onSignInClick} style={{ cursor: 'pointer' }}>Sign In</Nav.Link>
         </Nav>
