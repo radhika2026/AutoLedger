@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { FETCH_USER } from './utils/resdb';
+import { sendRequest } from './utils/resdbApi';
+
 
 const SignInModal = ({ isOpen, toggle }) => {
   const [email, setEmail] = useState('');
@@ -20,8 +23,12 @@ const SignInModal = ({ isOpen, toggle }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Form Submitted', { email, password });
-      toggle(); // Close modal after submission
+      sendRequest(
+        FETCH_USER({ email, password })
+      ).then((res) => {
+        //TODO: add alert to show successly added user and add cookie and redirect
+        console.log("added successfully ", res);
+      });
     }
   };
 
