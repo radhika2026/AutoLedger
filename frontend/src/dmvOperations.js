@@ -14,9 +14,13 @@ const metadata = {
 const DMV = () => {
   const [operation, setOperation] = useState("");
   const [carData, setCarData] = useState({});
-  
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [searchedData, setSearchedData] = useState("");
+
   const handleOperationChange = (event) => {
     setOperation(event.target.value);
+    setIsDataLoaded(false);
+    setCarData({})
   };
 
   const handleCarDataChange = (event) => {
@@ -24,12 +28,45 @@ const DMV = () => {
     setCarData((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const handleSearchDataChange = (event) => {
+    const { name, value } = event.target;
+    setSearchedData(value);
+  };
+
+  const handleFetch = (event) => {
+    try {
+      const response = {
+        chasisNumber: "12345678123456781",
+        class: "Z",
+        color: "12345678vj",
+        driveType: "Front Wheel",
+        drivingLicenseNumber: " 12345678",
+        engineNumber: "1234567812345678",
+        fuel: "Diesel",
+        groundClearance: "-0.01",
+        licensePlate: "12345678",
+        manufacturer: "df",
+        manufacturingDate: "2023-12-09",
+        model: "rfg",
+        odometerReading: "1",
+        ownerName: "12345678",
+        seating: "5",
+        transmission: "Automatic",
+        wheelBase: "0.98",
+      };
+      setCarData(response);
+      setIsDataLoaded(true);
+    } catch (error) {
+      console.error("Error fetching car details:", error);
+      setIsDataLoaded(false);
+    }
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     //TODO: Validate Form logic(Aakash)
     const timestamp = Date.now();
     const today = new Date();
-    const formattedDate = today.toISOString().split('T')[0];
+    const formattedDate = today.toISOString().split("T")[0];
 
     var dataWithTimestamp = {
       ...carData,
@@ -37,41 +74,35 @@ const DMV = () => {
       asset_type: "user",
     };
     if (operation === "CreateCarEntry") {
-      var ownerMap = {}
-      ownerMap.ownerName = carData.ownerName
-      ownerMap.ownershipStartDate = formattedDate
-      var ownerList = []
-      ownerList.push(ownerMap)
+      var ownerMap = {};
+      ownerMap.ownerName = carData.ownerName;
+      ownerMap.ownershipStartDate = formattedDate;
+      var ownerList = [];
+      ownerList.push(ownerMap);
       dataWithTimestamp = {
         ...dataWithTimestamp,
-        "ownerHistory" : ownerList
-      }
+        ownerHistory: ownerList,
+      };
       const payload = JSON.stringify(dataWithTimestamp);
-      try{
-        sendRequest(
-          POST_TRANSACTION(metadata, payload)
-        ).then((res) => {
+      try {
+        sendRequest(POST_TRANSACTION(metadata, payload)).then((res) => {
           //TODO: add alert to show successly added user and redirect to login page
           console.log("added successfully ", res);
         });
-      }
-      catch(error){
+      } catch (error) {
         //TODO: Internal server error toast/alert
       }
     }
 
     if (operation === "ModifyCarEntry") {
       const payload = JSON.stringify(dataWithTimestamp);
-      try{
-        sendRequest(
-          UPDATE_CAR(metadata, payload)
-        ).then((res) => {
-          //the res has all the updated car information. 
+      try {
+        sendRequest(UPDATE_CAR(metadata, payload)).then((res) => {
+          //the res has all the updated car information.
           //TODO: add alert to show successly added user and redirect to login page
           console.log("added successfully ", res);
         });
-      }
-      catch(error){
+      } catch (error) {
         //TODO: Internal server error toast/alert
       }
     }
@@ -111,6 +142,10 @@ const DMV = () => {
               carData={carData}
               handleCarDataChange={handleCarDataChange}
               handleSubmit={handleSubmit}
+              handleFetch={handleFetch}
+              isDataLoaded={isDataLoaded}
+              searchedData={searchedData}
+              handleSearchDataChange={handleSearchDataChange}
             />
           )}
         </Form>
