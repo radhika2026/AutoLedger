@@ -1,0 +1,20 @@
+/* Footer.css */
+.footer {
+    background-color: #092635; /* Dark green from the color theme */
+    color: #9EC8B9; /* Light green for text */
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .footer-content {
+    max-width: 960px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+  }
+  
+  .footer-content p {
+    margin: 5px 0;
+  }
+  
+  /* You can add hover effects or styles for links if needed */
+  

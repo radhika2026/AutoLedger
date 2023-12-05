@@ -1,11 +1,20 @@
 .HomeComponent-background {
-  background-image: url('car6.webp');
+  background-color:#9EC8B9;
   /* Add the correct path to your background image */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
-  color: white;
+  color: #1B4242;
+}
+app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1; /* This will ensure that the main content expands */
 }
 
 .navbar-custom {
@@ -22,7 +31,7 @@
   /* Adjust the padding as needed */
 }
 
-.form-container {
+.search-container {
   background-color: rgba(0, 0, 0, 0.5);
   /* Semi-transparent black */
   padding: 2rem;
@@ -35,7 +44,8 @@
 }
 
 .form-heading {
-  color: #d70d0d;
+  color: #1B4242;
+  background-color:  #9EC8B9;
   text-align: center;
   margin-bottom: 3rem;
   /* Increase the bottom margin to create more gap */
@@ -67,17 +77,7 @@
   margin-top: 5px;
 }
 
-.navbar-custom .nav-link {
-  color: rgba(0, 0, 0, 0.5);
-  /* Or any other color you have for your links */
-  margin-right: 10px;
-  /* Adjust spacing to match other links */
-}
 
-.navbar-custom .nav-link:hover {
-  color: rgba(0, 0, 0, 0.7);
-  /* Slightly darker on hover, or your preferred hover color */
-}
 
 /* Styles for the form control within the Search component */
 .inline-form .form-control {
@@ -99,10 +99,6 @@
   .navbar-custom {
     background-color: rgba(255, 255, 255, 0.95);
     /* Less transparency for better readability */
-  }
-
-  .centered-form {
-    padding-top: 1rem;
   }
 
   .form-container {
@@ -200,7 +196,7 @@ body {
 .form-container {
   padding: 2rem;
   border-radius: 0.5rem;
-  background-color: #fff;
+
   margin: 2rem auto;
   max-width: 800px;
   width: 90%;
@@ -275,15 +271,6 @@ body {
   }
 }
 
-/* Specific styles for the Insurance dropdown */
-.navbar-custom .nav-link-insurance {
-  color: rgba(0, 0, 0, 0.5);
-  margin-right: 10px;
-}
-
-.navbar-custom .nav-link-insurance:hover {
-  color: rgba(0, 0, 0, 0.7);
-}
 
 /* Adjust styles for smaller screens */
 @media (max-width: 768px) {
@@ -304,60 +291,3 @@ body {
 
 /* Update your NavbarComponent.css or App.css with these styles */
 
-.navbar-custom {
-  background: linear-gradient(135deg, #3498db, #310943);
-  /* Gradient background using your preferred colors */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid #fff; /* Add a subtle border at the bottom */
-}
-
-.navbar-custom .nav-link {
-  color: #fff; /* White text color for links */
-  margin-right: 10px;
-  margin-left: 10px;
-  transition: color 0.3s ease; /* Smooth color transition on hover */
-}
-
-.navbar-custom .nav-link:hover {
-  color: #f8f9fa; /* Lighter color on hover */
-}
-
-/* Add this if you want to style the brand link */
-.navbar-custom .navbar-brand {
-  color: #fff; /* White text color for the brand */
-  transition: color 0.3s ease; /* Smooth color transition on hover */
-}
-
-.navbar-custom .navbar-brand:hover {
-  color: #f8f9fa; /* Lighter color on hover */
-}
-/* Update your NavbarComponent.css or App.css with these styles */
-
-.navbar-custom {
-  background: linear-gradient(135deg, #3498db, #310943);
-  /* Gradient background using your preferred colors */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid #fff; /* Add a subtle border at the bottom */
-  padding: 20px 0; /* Increase the vertical padding to make the navbar taller */
-}
-
-.navbar-custom .nav-link {
-  color: #fff; /* White text color for links */
-  margin-right: 20px;
-  transition: color 0.3s ease; /* Smooth color transition on hover */
-}
-
-.navbar-custom .nav-link:hover {
-  color: #f8f9fa; /* Lighter color on hover */
-}
-
-/* Add this if you want to style the brand link */
-.navbar-custom .navbar-brand {
-  color: #fff; /* White text color for the brand */
-  font-size: 2rem; /* Increase the font size for the brand */
-  transition: color 0.3s ease; /* Smooth color transition on hover */
-}
-
-.navbar-custom .navbar-brand:hover {
-  color: #f8f9fa; /* Lighter color on hover */
-}

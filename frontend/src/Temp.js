@@ -1,9 +1,9 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import NavbarComponent from './NavbarComponent'; // Import Navbar component
-import SearchComponent from './SearchComponent'; // Import Search component
+import React from "react";
+import Container from "react-bootstrap/Container";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import NavbarComponent from "./NavbarComponent"; // Import Navbar component
+import SearchComponent from "./SearchComponent"; // Import Search component
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         </Container>
       </div>
       <SearchComponent />
+      <h1>hello</h1>
     </div>
   );
 }

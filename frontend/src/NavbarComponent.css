@@ -1,0 +1,20 @@
+.navbar-custom {
+    background-color: #092635;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .navbar-brand-custom {
+    color: #9EC8B9;
+    font-weight: 700;
+  }
+  
+  .nav-link-custom {
+    color: #9EC8B9;
+    font-weight: 500;
+  }
+  
+  .nav-link-custom:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+  
