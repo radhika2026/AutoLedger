@@ -18,7 +18,7 @@ const NavbarComponent = ({ onRegisterClick, onSignInClick, onDMVClick, onInsuran
           <Nav.Link onClick={onSignInClick} style={{ cursor: 'pointer' }}>Sign In</Nav.Link>
           <Nav.Link href="/InsuranceDropdown">Insurance</Nav.Link>
           <Nav.Link href="/dmv">DMV Services</Nav.Link>
-          <Nav.Link onClick={onUserProfileClick}>profile</Nav.Link>
+          <Nav.Link onClick={onUserProfileClick}>Profile</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -4,9 +4,9 @@ import { Card } from 'react-bootstrap';
 const VehicleInfoComponent = () => {
   // Replace with actual data
   const vehicleInfo = {
-    year: 2007,
-    make: 'Toyota',
-    model: 'Corolla',
+    year: 2021,
+    make: 'Porshe',
+    model: '911',
     reportTitle: 'Vehicle History Report'
   };
 

@@ -12,7 +12,7 @@ const VehicleHistoryComponent = () => {
   return (
     <Card className="vehicle-history-card">
       <Card.Body>
-        <Card.Title>Vehicle History</Card.Title>
+        <Card.Title>Service History</Card.Title>
         <ul className="list-unstyled">
           {historyData.map((record, index) => (
             <li key={index}>
