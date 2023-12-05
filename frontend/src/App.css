@@ -274,3 +274,23 @@ body {
     max-width: 100%;
   }
 }
+
+/* Specific styles for the Insurance dropdown */
+.navbar-custom .nav-link-insurance {
+  color: rgba(0, 0, 0, 0.5);
+  margin-right: 10px;
+}
+
+.navbar-custom .nav-link-insurance:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Adjust styles for smaller screens */
+@media (max-width: 768px) {
+  /* ... existing media query styles ... */
+
+  /* Styles for smaller screens for the Insurance dropdown */
+  .navbar-custom .nav-link-insurance {
+    color: rgba(0, 0, 0, 0.7);
+  }
+}

@@ -1,7 +1,10 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav} from 'react-bootstrap';
+import InsuranceDropdown from './InsuranceDropdown'; // Import the new component
 
-const NavbarComponent = ({ onRegisterClick, onSignInClick, onDMVClick }) => {
+
+const NavbarComponent = ({ onRegisterClick, onSignInClick, onDMVClick, onInsuranceActions }) => {
+  
   return (
     <Navbar className="navbar-custom" expand="lg">
       <Navbar.Brand href="/home">AutoLedger</Navbar.Brand>
@@ -13,6 +16,8 @@ const NavbarComponent = ({ onRegisterClick, onSignInClick, onDMVClick }) => {
           <Nav.Link href="/ServiceCenterForm">Service Center</Nav.Link>
           <Nav.Link onClick={onRegisterClick} style={{ cursor: 'pointer' }}>Register</Nav.Link>
           <Nav.Link onClick={onSignInClick} style={{ cursor: 'pointer' }}>Sign In</Nav.Link>
+          <Nav.Link href="/InsuranceDropdown">Insurance</Nav.Link>
+          
           <Nav.Link href="/dmv">DMV Services</Nav.Link>
         </Nav>
       </Navbar.Collapse>
