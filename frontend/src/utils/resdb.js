@@ -46,3 +46,10 @@ export const FETCH_USER =(user) => `query {
     user: "${user}"
   )   
   }`
+
+//Fetch Car Details
+export const FETCH_CAR = (car) => `query {
+   getCarTransaction(
+    car:"${car}"
+    )
+   }`
