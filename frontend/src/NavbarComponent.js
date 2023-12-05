@@ -3,11 +3,11 @@ import { Navbar, Nav} from 'react-bootstrap';
 import InsuranceDropdown from './InsuranceDropdown'; // Import the new component
 
 
-const NavbarComponent = ({ onRegisterClick, onSignInClick, onDMVClick, onInsuranceActions }) => {
+const NavbarComponent = ({ onRegisterClick, onSignInClick, onDMVClick, onInsuranceActions, onUserProfileClick }) => {
   
   return (
     <Navbar className="navbar-custom" expand="lg">
-      <Navbar.Brand href="/home">AutoLedger</Navbar.Brand>
+      <Navbar.Brand href="/home" style={{ marginLeft: '12px' }}>AutoLedger</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
@@ -17,8 +17,8 @@ const NavbarComponent = ({ onRegisterClick, onSignInClick, onDMVClick, onInsuran
           <Nav.Link onClick={onRegisterClick} style={{ cursor: 'pointer' }}>Register</Nav.Link>
           <Nav.Link onClick={onSignInClick} style={{ cursor: 'pointer' }}>Sign In</Nav.Link>
           <Nav.Link href="/InsuranceDropdown">Insurance</Nav.Link>
-          
           <Nav.Link href="/dmv">DMV Services</Nav.Link>
+          <Nav.Link onClick={onUserProfileClick}>profile</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

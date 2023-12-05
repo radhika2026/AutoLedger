@@ -11,12 +11,14 @@ import RegistrationModal from './RegistrationModal';
 import ServiceCenterForm from './ServiceCenterForm';
 import DMV from './DMV';
 import Insurance from './InsuranceDropdown';
+import UserProfileModal from './UserProfileModal';
 
 function App() {
   const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false);
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [isDMVModalOpen, setDMVModalOpen] = useState(false);
   const [isInsuranceDropdownOpen, setInsuranceDropdownOpen] = useState(false); // New state for Insurance dropdown
+  const [isUserProfileModalOpen, setUserProfileModalOpen] = useState(false);
 
   const toggleRegistrationModal = () => {
     setRegistrationModalOpen(!isRegistrationModalOpen);
@@ -26,6 +28,10 @@ function App() {
     setInsuranceDropdownOpen(!isInsuranceDropdownOpen);
   };
 
+  const toggleUserProfileModal = () => {
+    setUserProfileModalOpen(!isUserProfileModalOpen);
+  };
+
   return (
     <Router>
       <NavbarComponent
@@ -33,6 +39,7 @@ function App() {
         onSignInClick={() => setSignInModalOpen(true)}
         onDMVClick={() => setDMVModalOpen(true)}
         onInsuranceActions={toggleInsuranceDropdown} // Pass toggle function to Insurance link
+        onUserProfileClick={toggleUserProfileModal} // Pass toggle function to UserProfile link
       />
       <Routes>
         <Route path="/home" element={<HomeComponent />} />
@@ -44,6 +51,7 @@ function App() {
         {/* Define other routes as needed */}
       </Routes>
       <SignInModal isOpen={isSignInModalOpen} toggle={() => setSignInModalOpen(false)} />
+      <UserProfileModal isOpen={isUserProfileModalOpen} toggle={toggleUserProfileModal} />
       <RegistrationModal isOpen={isRegistrationModalOpen} toggle={toggleRegistrationModal} />
       {/* <DMV isOpen={isDMVModalOpen} toggle={() => setDMVModalOpen(false)} /> */}
     </Router>

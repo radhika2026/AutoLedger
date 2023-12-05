@@ -294,3 +294,69 @@ body {
     color: rgba(0, 0, 0, 0.7);
   }
 }
+
+/* Styles for UserProfileModal */
+.modal-body {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+
+/* Update your NavbarComponent.css or App.css with these styles */
+
+.navbar-custom {
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+  /* Gradient background using your preferred colors */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #fff; /* Add a subtle border at the bottom */
+}
+
+.navbar-custom .nav-link {
+  color: #fff; /* White text color for links */
+  margin-right: 10px;
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.navbar-custom .nav-link:hover {
+  color: #f8f9fa; /* Lighter color on hover */
+}
+
+/* Add this if you want to style the brand link */
+.navbar-custom .navbar-brand {
+  color: #fff; /* White text color for the brand */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.navbar-custom .navbar-brand:hover {
+  color: #f8f9fa; /* Lighter color on hover */
+}
+/* Update your NavbarComponent.css or App.css with these styles */
+
+.navbar-custom {
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+  /* Gradient background using your preferred colors */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #fff; /* Add a subtle border at the bottom */
+  padding: 20px 0; /* Increase the vertical padding to make the navbar taller */
+}
+
+.navbar-custom .nav-link {
+  color: #fff; /* White text color for links */
+  margin-right: 20px;
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.navbar-custom .nav-link:hover {
+  color: #f8f9fa; /* Lighter color on hover */
+}
+
+/* Add this if you want to style the brand link */
+.navbar-custom .navbar-brand {
+  color: #fff; /* White text color for the brand */
+  font-size: 1.5rem; /* Increase the font size for the brand */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.navbar-custom .navbar-brand:hover {
+  color: #f8f9fa; /* Lighter color on hover */
+}
