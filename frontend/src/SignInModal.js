@@ -23,12 +23,20 @@ const SignInModal = ({ isOpen, toggle }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      sendRequest(
-        FETCH_USER({ email, password })
-      ).then((res) => {
-        //TODO: add alert to show successly added user and add cookie and redirect
-        console.log("added successfully ", res);
-      });
+      try{
+        sendRequest(
+          FETCH_USER({ email, password })
+        ).then((res) => {
+          //TODO: add alert to show successly added user and add cookie and redirect
+          console.log("added successfully ", res);
+        });
+      }
+      catch(error){
+          //TODO: "error pop up saying  internal server error try later" 
+      }
+    }
+    else{
+      //TODO: form not valid toast
     }
   };
 

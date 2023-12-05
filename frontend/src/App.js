@@ -9,12 +9,10 @@ import NavbarComponent from './NavbarComponent';
 import SignInModal from './SignInModal';
 import RegistrationModal from './RegistrationModal';
 import ServiceCenterForm from './ServiceCenterForm';
-import DMV from './DMV';
-
+import DMV from './dmvOperations';
 function App() {
   const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false);
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
-  const [isDMVModalOpen, setDMVModalOpen] = useState(false);
 
   const toggleRegistrationModal = () => {
     setRegistrationModalOpen(!isRegistrationModalOpen);

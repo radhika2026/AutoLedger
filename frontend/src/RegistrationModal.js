@@ -71,14 +71,26 @@ const RegistrationModal = ({ isOpen, toggle }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = JSON.stringify(formData);
+    const timestamp = Date.now();
+    const dataWithTimestamp = {
+      ...formData,
+      timestamp: timestamp,
+      asset_type: "user"
+    };
+    const payload = JSON.stringify(dataWithTimestamp);
     console.log(payload);
-    sendRequest(
-      POST_TRANSACTION(metadata, payload)
-    ).then((res) => {
-      //TODO: add alert to show successly added user and add cookie
-      console.log("added successfully ", res);
-    });
+    try{
+      sendRequest(
+        POST_TRANSACTION(metadata, payload)
+      ).then((res) => {
+        //TODO: add alert to show successly added user and redirect to login page
+        console.log("added successfully ", res);
+      });
+    }
+    catch(error){
+      //TODO: Internal server error toast/alert
+    }
+
   };
 
   const renderStepContent = (step) => {
