@@ -9,7 +9,7 @@ import NavbarComponent from './NavbarComponent';
 import SignInModal from './SignInModal';
 import RegistrationModal from './RegistrationModal';
 import ServiceCenterForm from './ServiceCenterForm';
-import DMV from './DMV';
+import DMV from './dmvOperations';
 import Insurance from './InsuranceDropdown';
 import UserProfileModal from './UserProfileModal';
 

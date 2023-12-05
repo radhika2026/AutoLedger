@@ -53,3 +53,19 @@ export const FETCH_CAR = (car) => `query {
     car:"${car}"
     )
    }`
+
+//Update Car Details
+export const UPDATE_CAR = (metadata, car) => `mutation {
+  updateCarTransaction(data: {
+    operation: "CREATE",
+    amount: 100,
+    signerPublicKey: "${metadata?.signerPublicKey}",
+    signerPrivateKey: "${metadata?.signerPrivateKey}",
+    recipientPublicKey: "${metadata?.recipientPublicKey}",
+    asset: """{
+      "data": ${car},    
+    }
+    """
+    })
+
+}`

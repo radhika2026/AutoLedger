@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Form, Button, FormControl } from 'react-bootstrap';
-import axios from 'axios';
 import { sendRequest } from './utils/resdbApi';
 import { FETCH_CAR } from './utils/resdb';
 
