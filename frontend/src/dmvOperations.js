@@ -3,7 +3,7 @@ import { Form, FormControl } from "react-bootstrap";
 import CreateCarEntry from "./CreateCarEntry";
 import ModifyCarEntry from "./ModifyCarEntry";
 import { sendRequest } from "./utils/resdbApi";
-import { POST_TRANSACTION, UPDATE_CAR } from "./utils/resdb";
+import { FETCH_CAR, POST_TRANSACTION, UPDATE_CAR } from "./utils/resdb";
 
 const metadata = {
   signerPublicKey: "HvNRQznqrRdCwSKn6R8ZoQE4U3aobQShajK1NShQhGRn",
@@ -20,7 +20,7 @@ const DMV = () => {
   const handleOperationChange = (event) => {
     setOperation(event.target.value);
     setIsDataLoaded(false);
-    setCarData({})
+    setCarData({});
   };
 
   const handleCarDataChange = (event) => {
@@ -35,26 +35,37 @@ const DMV = () => {
 
   const handleFetch = (event) => {
     try {
-      const response = {
-        chasisNumber: "12345678123456781",
-        class: "Z",
-        color: "12345678vj",
-        driveType: "Front Wheel",
-        drivingLicenseNumber: " 12345678",
-        engineNumber: "1234567812345678",
-        fuel: "Diesel",
-        groundClearance: "-0.01",
-        licensePlate: "12345678",
-        manufacturer: "df",
-        manufacturingDate: "2023-12-09",
-        model: "rfg",
-        odometerReading: "1",
-        ownerName: "12345678",
-        seating: "5",
-        transmission: "Automatic",
-        wheelBase: "0.98",
-      };
-      setCarData(response);
+      // const response = {
+      //   chasisNumber: "12345678123456781",
+      //   class: "Z",
+      //   color: "12345678vj",
+      //   driveType: "Front Wheel",
+      //   drivingLicenseNumber: " 12345678",
+      //   engineNumber: "1234567812345678",
+      //   fuel: "Diesel",
+      //   groundClearance: "-0.01",
+      //   licensePlate: "12345678",
+      //   manufacturer: "df",
+      //   manufacturingDate: "2023-12-09",
+      //   model: "rfg",
+      //   odometerReading: "1",
+      //   ownerName: "12345678",
+      //   seating: "5",
+      //   transmission: "Automatic",
+      //   wheelBase: "0.98",
+      // };
+      var payload = {
+        "asset_type": "car",
+        "numberPlate": searchedData
+      }
+      sendRequest(FETCH_CAR(payload)).then((res) => {
+        if (res != {}) {
+          //TODO: REDIRECT TO VEHICLE INFO PAGE
+          setCarData(res);
+        } else {
+          //TODO: pop up no car found
+        }
+      });
       setIsDataLoaded(true);
     } catch (error) {
       console.error("Error fetching car details:", error);
@@ -71,12 +82,14 @@ const DMV = () => {
     var dataWithTimestamp = {
       ...carData,
       timestamp: timestamp,
-      asset_type: "user",
+      asset_type: "car",
     };
+
+    var ownerMap = {};
+    ownerMap.ownerName = carData.ownerName;
+    ownerMap.ownershipStartDate = formattedDate;
+
     if (operation === "CreateCarEntry") {
-      var ownerMap = {};
-      ownerMap.ownerName = carData.ownerName;
-      ownerMap.ownershipStartDate = formattedDate;
       var ownerList = [];
       ownerList.push(ownerMap);
       dataWithTimestamp = {
@@ -85,6 +98,7 @@ const DMV = () => {
       };
       const payload = JSON.stringify(dataWithTimestamp);
       try {
+
         sendRequest(POST_TRANSACTION(metadata, payload)).then((res) => {
           //TODO: add alert to show successly added user and redirect to login page
           console.log("added successfully ", res);
@@ -95,6 +109,15 @@ const DMV = () => {
     }
 
     if (operation === "ModifyCarEntry") {
+      var ownerList = dataWithTimestamp.ownerList
+      var current_owner = ownerList[ownerList.length - 1];
+      if ( current_owner?.ownerName != ownerMap?.ownerName){
+        ownerList.push(ownerMap);
+      }
+      dataWithTimestamp = {
+        ...dataWithTimestamp,
+        ownerHistory: ownerList,
+      };
       const payload = JSON.stringify(dataWithTimestamp);
       try {
         sendRequest(UPDATE_CAR(metadata, payload)).then((res) => {

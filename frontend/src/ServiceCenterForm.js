@@ -1,40 +1,64 @@
 import React, { useState } from "react";
+import { sendRequest } from "./utils/resdbApi";
+import { FETCH_CAR, UPDATE_CAR } from "./utils/resdb";
 
 const ServiceCenterForm = () => {
   const [formData, setFormData] = useState({
-    ownerName: "",
-    ownerEmail: "",
-    vehicleMake: "",
-    vehicleModel: "",
-    vehicleYear: "",
     odometerReading: "",
     numberPlate: "",
     serviceCenterId: "",
     mechanicName: "",
     mechanicId: "",
     notes: "",
+    dateOfService: "",
   });
 
+  // "servicingHistory": [
+  //   {
+  //     "serviceCenter": "AutoCare Service Center",
+  //     "serviceDate": "01-09-2022",
+  //     "serviceDescription": "Oil change, filter replacement"
+  //   }
+  // ]
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  //   const validateEmail = (email) => {
-  //     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()\[\]\\.,;:\s@"]+\.)+[^<>()\[\]\\.,;:\s@"]{2,})$/i;
-  //     return re.test(String(email).toLowerCase());
-  //   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const timestamp = Date.now();
-    const dataWithTimestamp = {
-      ...formData,
-      timestamp: timestamp,
+    var payload = {
+      asset_type: "car",
+      numberPlate: formData.numberPlate,
     };
+    try{sendRequest(FETCH_CAR(payload)).then((res) => {
+      if (res != {}) {
+        if (res.data.getCarTransaction.servicingHistory) {
+          var servicingHistory = res.data.getCarTransaction.servicingHistory;
+          servicingHistory.push(formData);
+          res.data.getCarTransaction.servicingHistory = servicingHistory;
+        }
+        if (
+          formData?.odometerReading !=
+          res.data.getCarTransaction.odometerReading
+        ) {
+          res.data.getCarTransaction.odometerReading = formData.odometerReading;
+        }
+        try {
+          sendRequest(UPDATE_CAR(res)).then((response) => {
+            console.log("updated successfully");
+          });
+        } catch (error) {
+          console.log("error");
+        }
+      } else {
+        //TODO: pop up no car found
+      }
+      
+    });
+  }
+  catch(error){
 
-    const payload = JSON.stringify(dataWithTimestamp);
-    console.log(payload);
+  }
     //CRITICAL: ADD Update Car API
   };
 
@@ -43,62 +67,6 @@ const ServiceCenterForm = () => {
       <form onSubmit={handleSubmit}>
         <h2>Service Center Form</h2>
         <div>
-          <label>Owner Name</label>
-          <input
-            type="text"
-            name="ownerName"
-            value={formData.ownerName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Owner Email</label>
-          <input
-            type="email"
-            name="ownerEmail"
-            value={formData.ownerEmail}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Vehicle Make</label>
-          <input
-            type="text"
-            name="vehicleMake"
-            value={formData.vehicleMake}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Vehicle Model</label>
-          <input
-            type="text"
-            name="vehicleModel"
-            value={formData.vehicleModel}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Vehicle Year</label>
-          <input
-            type="number"
-            name="vehicleYear"
-            value={formData.vehicleYear}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Odometer Reading</label>
-          <input
-            type="number"
-            name="odometerReading"
-            value={formData.odometerReading}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
           <label>License Plate</label>
           <input
             type="text"
@@ -106,6 +74,16 @@ const ServiceCenterForm = () => {
             pattern="[A-Za-z0-9]{6,8}"
             title="6 to 8 alphanumeric characters"
             value={formData.numberPlate}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Date of Service</label>
+          <input
+            type="date" // Set the type to date
+            name="dateOfService"
+            value={formData.dateOfService}
             onChange={handleChange}
             required
           />
@@ -134,6 +112,26 @@ const ServiceCenterForm = () => {
             type="number"
             name="mechanicId"
             value={formData.mechanicId}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="numberPlate"
+            pattern="[A-Za-z0-9]{6,8}"
+            title="6 to 8 alphanumeric characters"
+            value={formData.numberPlate}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label>Odometer Reading</label>
+          <input
+            type="number"
+            name="odometerReading"
+            value={formData.odometerReading}
             onChange={handleChange}
           />
         </div>
