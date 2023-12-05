@@ -18,7 +18,7 @@ const SearchComponent = () => {
         FETCH_CAR(payload)
       ).then((res) => {
         if(res != {}){
-          let ownerHistory = response.data.getCarTransaction.owner_history;
+          let ownerHistory = res.data.getCarTransaction.owner_history;
           let lastOwner = ownerHistory[ownerHistory.length - 1];
           res.currentOwner = lastOwner;
           //TODO: REDIRECT TO VEHICLE INFO PAGE
