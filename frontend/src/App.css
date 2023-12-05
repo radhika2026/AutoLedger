@@ -1,5 +1,5 @@
 .HomeComponent-background {
-  background-image: url('./2.jpg');
+  background-image: url('car6.webp');
   /* Add the correct path to your background image */
   background-size: cover;
   background-position: center;
@@ -35,7 +35,7 @@
 }
 
 .form-heading {
-  color: #ffffff;
+  color: #d70d0d;
   text-align: center;
   margin-bottom: 3rem;
   /* Increase the bottom margin to create more gap */
@@ -192,7 +192,7 @@ body {
   background-color: #f4f7f6;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: Poppins;
 }
 
 /* General form styles */
@@ -208,9 +208,9 @@ body {
 
 .form-heading {
   text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.5rem;
-  font-weight: 600;
+  margin-bottom: 0rem;
+  font-size: 3rem;
+  font-weight: 800;
 }
 
 .form-group {
@@ -237,7 +237,7 @@ body {
 
 .btn {
   padding: 0.5rem 1rem;
-  background-color: #007bff;
+  background-color: #267ad3;
   color: #fff;
   border: none;
   border-radius: 0.25rem;
@@ -305,7 +305,7 @@ body {
 /* Update your NavbarComponent.css or App.css with these styles */
 
 .navbar-custom {
-  background: linear-gradient(135deg, #3498db, #8e44ad);
+  background: linear-gradient(135deg, #3498db, #310943);
   /* Gradient background using your preferred colors */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #fff; /* Add a subtle border at the bottom */
@@ -314,6 +314,7 @@ body {
 .navbar-custom .nav-link {
   color: #fff; /* White text color for links */
   margin-right: 10px;
+  margin-left: 10px;
   transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
@@ -333,7 +334,7 @@ body {
 /* Update your NavbarComponent.css or App.css with these styles */
 
 .navbar-custom {
-  background: linear-gradient(135deg, #3498db, #8e44ad);
+  background: linear-gradient(135deg, #3498db, #310943);
   /* Gradient background using your preferred colors */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid #fff; /* Add a subtle border at the bottom */
@@ -353,7 +354,7 @@ body {
 /* Add this if you want to style the brand link */
 .navbar-custom .navbar-brand {
   color: #fff; /* White text color for the brand */
-  font-size: 1.5rem; /* Increase the font size for the brand */
+  font-size: 2rem; /* Increase the font size for the brand */
   transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
