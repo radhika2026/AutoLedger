@@ -427,3 +427,16 @@ body {
 }
 
 
+/* SignInModal.css */
+
+.custom-input {
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+}
+
+.custom-button {
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bold;
+}

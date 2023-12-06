@@ -2,86 +2,81 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Cookies from 'js-cookie'; // Import Cookies
+import Alert from 'react-bootstrap/Alert';
 import { FETCH_USER } from './utils/resdb';
 import { sendRequest } from './utils/resdbApi';
+import './App.css'; // Import the custom CSS file
 
 const SignInModal = ({ isOpen, toggle }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const [showError, setShowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const validateForm = () => {
     let tempErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     tempErrors.email = emailRegex.test(email) ? '' : 'Email is not valid.';
-    tempErrors.password = password.length >= 10 && password.length <= 15 ? '' : 'Password must be 10-15 characters long.';
+    tempErrors.password = password.length >= 8 ? '' : 'Password must be at least 8 characters long.';
     setErrors(tempErrors);
-    return Object.values(tempErrors).every(x => x === "");
+    return Object.values(tempErrors).every(x => x === '');
   };
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        sendRequest(FETCH_USER({ email, password }))
-          .then((res) => {
-            // Assuming the response contains the user role
-            // Set the user's role in a cookie
-            Cookies.set('userRole', res.userRole, { expires: 1 }); // Expires in 1 day
-            console.log("Signed in successfully", res);
-            
-            toggle(); // Close the modal after successful login
-          })
-          .catch(error => {
-            // Handle any errors here
-            console.error("Login error", error);
-          });
+        const res = await sendRequest(FETCH_USER({ email, password }));
+        // TODO: Handle successful sign-in, add cookie, and redirect
+        console.log('Sign in successful', res);
       } catch (error) {
         // Handle error
-        console.error("An error occurred during login", error);
+        setShowError(true);
+        setErrorMessage('Internal server error. Please try again later.');
       }
     } else {
-      // Form validation failed
+      // TODO: Handle form not valid toast
     }
   };
 
   return (
-    <Modal show={isOpen} onHide={toggle}>
-      <Modal.Header closeButton>
-        <Modal.Title>Sign In</Modal.Title>
-      </Modal.Header>
+    <Modal show={isOpen} onHide={toggle} centered>
       <Modal.Body>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="text-center">
+          <Modal.Title className="mb-4">Sign In</Modal.Title>
+
+          {showError && (
+            <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+              {errorMessage}
+            </Alert>
+          )}
+
           <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control 
-              type="email" 
-              placeholder="Enter email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               isInvalid={!!errors.email}
+              className="mb-3 custom-input"
             />
-            <Form.Control.Feedback type="invalid">
-              {errors.email}
-            </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control 
-              type="password" 
-              placeholder="Password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               isInvalid={!!errors.password}
+              className="custom-input"
             />
-            <Form.Control.Feedback type="invalid">
-              {errors.password}
-            </Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
           </Form.Group>
-          <Button variant="primary" type="submit">
+
+          <Button variant="primary" type="submit" className="w-100 mt-3 custom-button">
             Sign In
           </Button>
         </Form>
