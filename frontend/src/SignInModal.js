@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Cookies from 'js-cookie'; // Import Cookies
 import { FETCH_USER } from './utils/resdb';
 import { sendRequest } from './utils/resdbApi';
-
 
 const SignInModal = ({ isOpen, toggle }) => {
   const [email, setEmail] = useState('');
@@ -20,23 +20,30 @@ const SignInModal = ({ isOpen, toggle }) => {
     return Object.values(tempErrors).every(x => x === "");
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      try{
-        sendRequest(
-          FETCH_USER({ email, password })
-        ).then((res) => {
-          //TODO: add alert to show successly added user and add cookie and redirect
-          console.log("added successfully ", res);
-        });
+      try {
+        sendRequest(FETCH_USER({ email, password }))
+          .then((res) => {
+            // Assuming the response contains the user role
+            // Set the user's role in a cookie
+            Cookies.set('userRole', res.userRole, { expires: 1 }); // Expires in 1 day
+            console.log("Signed in successfully", res);
+            
+            toggle(); // Close the modal after successful login
+          })
+          .catch(error => {
+            // Handle any errors here
+            console.error("Login error", error);
+          });
+      } catch (error) {
+        // Handle error
+        console.error("An error occurred during login", error);
       }
-      catch(error){
-          //TODO: "error pop up saying  internal server error try later" 
-      }
-    }
-    else{
-      //TODO: form not valid toast
+    } else {
+      // Form validation failed
     }
   };
 

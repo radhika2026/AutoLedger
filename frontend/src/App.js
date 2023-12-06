@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Cookies from 'js-cookie'; // Import the Cookies library
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import "./ServiceCenterForm.css";
@@ -19,6 +20,13 @@ function App() {
   const [isDMVModalOpen, setDMVModalOpen] = useState(false);
   const [isInsuranceDropdownOpen, setInsuranceDropdownOpen] = useState(false); // New state for Insurance dropdown
   const [isUserProfileModalOpen, setUserProfileModalOpen] = useState(false);
+  const [userRole, setUserRole] = useState(null);
+
+  useEffect(() => {
+    // Update the user role from cookie on component mount
+    const role = Cookies.get('userRole');
+    setUserRole(role);
+  }, []);
 
   const toggleRegistrationModal = () => {
     setRegistrationModalOpen(!isRegistrationModalOpen);
@@ -37,9 +45,9 @@ function App() {
       <NavbarComponent
         onRegisterClick={toggleRegistrationModal}
         onSignInClick={() => setSignInModalOpen(true)}
+        onUserProfileClick={toggleUserProfileModal}
         onDMVClick={() => setDMVModalOpen(true)}
         onInsuranceActions={toggleInsuranceDropdown} // Pass toggle function to Insurance link
-        onUserProfileClick={toggleUserProfileModal} // Pass toggle function to UserProfile link
       />
       <Routes>
         <Route path="/home" element={<HomeComponent />} />

@@ -6,13 +6,14 @@ import VehicleHistoryComponent from './VehicleHistoryComponent';
 import VehicleSpecsComponent from './VehicleSpecsComponent';
 import OwnerInfoComponent from './OwnerDetailsComponent.js';
 import InsuranceInfoComponent from './InsuranceInfoComponent.js';
-
-function VehicleInfo() {
+function VehicleInfo({ userRole }) {
+  var userRole = 'vehicle owner'
   return (
     <div className="VehicleInfo-container">
       <VehicleInfoComponent />
-      <OwnerInfoComponent />  
-      <InsuranceInfoComponent />
+      {console.log(userRole)}
+      {(userRole === 'vehicle owner' || userRole === 'DMV') && <OwnerInfoComponent />}  
+      {userRole === 'vehicle owner' || userRole === 'insurance' && <InsuranceInfoComponent />}
       <VehicleHistoryComponent />
       <VehicleSpecsComponent />
     </div>

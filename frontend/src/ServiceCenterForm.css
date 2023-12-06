@@ -1,65 +1,55 @@
-/* Service Center Form Styles */
 
 .Service-form-container {
-    background-color: #f5f5f5; /* Light grey background */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 20px auto;
-  }
-  
-  .Service-form-container h2 {
-    color: #333;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .Service-form-container label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #444;
-  }
-  
-  .Service-form-container input[type="text"],
-  .Service-form-container input[type="email"],
-  .Service-form-container input[type="number"],
-  .Service-form-container textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box; /* Ensures padding doesn't affect overall width */
-  }
-  
-  .Service-form-container textarea {
-    height: 100px;
-    resize: vertical; /* Allows vertical resizing */
-  }
-  
-  .Service-form-container button {
-    background-color: #007bff; /* Bootstrap primary color */
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .Service-form-container button:hover {
-    background-color: #0056b3; /* Darker shade for hover effect */
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .Service-form-container {
-      width: 90%;
-      padding: 15px;
-      margin: 10px auto;
-    }
-  }
-  
+  background-color: #f5f5f5; /* Light grey background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.Service-form-container h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.Service-form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #444;
+}
+
+.Service-form-container input[type="text"],
+.Service-form-container input[type="email"],
+.Service-form-container input[type="number"],
+.Service-form-container textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding doesn't affect overall width */
+}
+
+.Service-form-container textarea {
+  height: 100px;
+  resize: vertical; /* Allows vertical resizing */
+}
+
+.Service-form-container button {
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.Service-form-container button:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
+}
+
