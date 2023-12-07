@@ -1,15 +1,14 @@
 import React from 'react';
 import { Card, Table } from 'react-bootstrap';
 
-const InsuranceInfoComponent = () => {
+const InsuranceInfoComponent = (insuranceData) => {
   // Static data for demonstration, replace with actual data fetching logic
-  const insuranceData = {
-    insurance_number: 'INS1234567',
-    insurance_provider: 'ABC Insurance Co.',
-    policy_start_date: '12-01-2022',
-    policy_end_date: '15-08-2022'
-    // Add more insurance details as needed
-  };
+  // const insuranceData = {
+  //   insurance_number: 'INS1234567',
+  //   insurance_provider: 'ABC Insurance Co.',
+  //   policy_start_date: '12-01-2022',
+  //   policy_end_date: '15-08-2022'
+  // };
 
   return (
     <Card className="insurance-info-card">
