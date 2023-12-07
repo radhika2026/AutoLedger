@@ -394,7 +394,7 @@ body {
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
   .navbar-custom {
-    background-color: #708090; /* Slate Gray background */
+    background-color: #708090; /* Slate Gray background */ /*Change to blue*/
     padding: 10px 15px; /* Adjust padding */
     text-align: center; /* Center-align the navbar items */
 
