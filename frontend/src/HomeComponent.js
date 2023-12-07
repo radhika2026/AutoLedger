@@ -1,11 +1,17 @@
-import React from 'react';
-import NavbarComponent from './NavbarComponent';
+import React, { useState } from 'react';
 import Footer from './Footer';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import './HomePage.css';
-import './AutoLedger.webp'; // Update with the path to your logo image
+import SignInModal from './SignInModal'; // Import SignInModal
+import RegistrationModal from './RegistrationModal'; // Import RegistrationModal
 
 const HomePage = () => {
+  const [showSignInModal, setShowSignInModal] = useState(false);
+  const [showRegistrationModal, setShowRegistrationModal] = useState(false);
+
+  const toggleSignInModal = () => setShowSignInModal(!showSignInModal);
+  const toggleRegistrationModal = () => setShowRegistrationModal(!showRegistrationModal);
+
   return (
     <>
       <div className="hero-section d-flex justify-content-center align-items-center text-center">
@@ -14,12 +20,18 @@ const HomePage = () => {
           <h1>Welcome to AutoLedger</h1>
           <p>Your ultimate vehicle management solution.</p>
           <div className="cta-buttons">
-            <Button variant="primary" href="/login">Log in</Button>
-            <Button variant="outline-light" href="/register">Sign up</Button>
+            <Button variant="primary" onClick={toggleSignInModal}>Log in</Button>
+            <Button variant="outline-light" onClick={toggleRegistrationModal}>Sign up</Button>
           </div>
         </div>
       </div>
       <Footer />
+
+      {/* SignInModal */}
+      <SignInModal isOpen={showSignInModal} toggle={toggleSignInModal} />
+
+      {/* RegistrationModal */}
+      <RegistrationModal isOpen={showRegistrationModal} toggle={toggleRegistrationModal} />
     </>
   );
 };

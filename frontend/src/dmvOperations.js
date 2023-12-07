@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Modal } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Form, FormControl } from "react-bootstrap";
 import CreateCarEntry from "./CreateCarEntry";
 import ModifyCarEntry from "./ModifyCarEntry";
@@ -105,7 +105,7 @@ const DMV = () => {
     }
 
     if (operation === "ModifyCarEntry") {
-      var ownerList = dataWithTimestamp.ownerHistory;
+      // var ownerList = dataWithTimestamp.ownerHistory;
       var current_owner = ownerList[ownerList.length - 1];
       if (current_owner?.ownerName != ownerMap?.ownerName) {
         ownerList.push(ownerMap);
