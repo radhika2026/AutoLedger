@@ -23,7 +23,7 @@ const ModifyCarEntry = ({
             value={searchedData}
             onChange={handleSearchDataChange}
           />
-          {searchedData.length < 8 || searchedData.length >  10? (
+          {searchedData.length < 8 || searchedData.length > 10 ? (
             <Form.Text className="text-danger">
               License plate must be 6 to 8 characters long.
             </Form.Text>
@@ -59,7 +59,7 @@ const ModifyCarEntry = ({
             <Input
               type="text"
               name="ownerName"
-              value={carData.ownerName}
+              value={carData.ownerHistory[ownerHistory.length -1].ownerName}
               onChange={handleCarDataChange}
             />
           </Form.Group>
@@ -232,7 +232,7 @@ const ModifyCarEntry = ({
             <Form.Control
               type="text"
               name="class"
-              value={carData.class}
+              value={carData.carClass}
               onChange={handleCarDataChange}
             />
           </Form.Group>

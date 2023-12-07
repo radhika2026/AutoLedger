@@ -58,7 +58,7 @@ const DMV = () => {
       sendRequest(FETCH_CAR(searchedData)).then((res) => {
         if (res != {}) {
           //TODO: REDIRECT TO VEHICLE INFO PAGE
-          setCarData(res);
+          setCarData(res.data.getCarTransaction);
         } else {
           //TODO: pop up no car found
         }
