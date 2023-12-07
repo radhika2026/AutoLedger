@@ -37,8 +37,13 @@ const SignInModal = ({ isOpen, toggle }) => {
       try {
         const res = await sendRequest(FETCH_USER({ email, password }));
         console.log("added successfully ", res);
-        navigate("/home");
-        //TODO: add cookie Arvind
+        if (Object.keys(res).length !== 0) {
+          //TODO: add cookie Arvind
+          navigate("/home");
+        } else {
+          setToastMessage("Invalid credentials!");
+          setShowToast(true);
+        }
       } catch (error) {
         // Handle error
         setToastMessage("Error Login, check later!");

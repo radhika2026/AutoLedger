@@ -1,27 +1,25 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { sendRequest } from "./utils/resdbApi";
-import { GENERATE_KEYS, POST_TRANSACTION } from "./utils/resdb";
+import { POST_TRANSACTION } from "./utils/resdb";
 import { useNavigate } from "react-router-dom";
 import ToastComponent from "./ToastComponent";
 
-//TODO: remove encrypted keys
 const metadata = {
   signerPublicKey: "HvNRQznqrRdCwSKn6R8ZoQE4U3aobQShajK1NShQhGRn",
   signerPrivateKey: "2QdMTdaNj8mJjduXFAsHieVmcsBcqeWQyW9v891kZEXC",
   recipientPublicKey: "HvNRQznqrRdCwSKn6R8ZoQE4U3aobQShajK1NShQhGRn",
 };
 
-
 const RegistrationModal = ({ isOpen, toggle }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    name: "",
-    dlNumber: "",
+    userName: "",
+    userRole: "",
+    idNo: "",
     email: "",
     password: "",
-    role: "",
-    additionalId: "",
+    drivingLicense: "",
   });
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
@@ -32,15 +30,9 @@ const RegistrationModal = ({ isOpen, toggle }) => {
     let errors = {};
     let isValid = true;
 
-    if (!formData.name) {
+    if (!formData.userName) {
       isValid = false;
-      errors.name = "Name is required";
-    }
-
-    const dlRegex = /^[a-zA-Z0-9]{8,10}$/;
-    if (!dlRegex.test(formData.dlNumber)) {
-      isValid = false;
-      errors.dlNumber = "DL number must be 8-10 alphanumeric characters";
+      errors.userName = "Name is required";
     }
 
     if (!formData.email.includes("@")) {
@@ -102,27 +94,16 @@ const RegistrationModal = ({ isOpen, toggle }) => {
         return (
           <Form>
             <FormGroup>
-              <Label for="name">Name</Label>
+              <Label for="userName">Name</Label>
               <Input
                 type="text"
-                name="name"
-                id="name"
-                value={formData.name}
+                name="userName"
+                id="userName"
+                value={formData.userName}
                 onChange={handleInputChange}
               />
-              {errors.name && <div className="error">{errors.name}</div>}
-            </FormGroup>
-            <FormGroup>
-              <Label for="dlNumber">DL Number</Label>
-              <Input
-                type="text"
-                name="dlNumber"
-                id="dlNumber"
-                value={formData.dlNumber}
-                onChange={handleInputChange}
-              />
-              {errors.dlNumber && (
-                <div className="error">{errors.dlNumber}</div>
+              {errors.userName && (
+                <div className="error">{errors.userName}</div>
               )}
             </FormGroup>
             <FormGroup>
@@ -149,18 +130,28 @@ const RegistrationModal = ({ isOpen, toggle }) => {
                 <div className="error">{errors.password}</div>
               )}
             </FormGroup>
+            <FormGroup>
+              <Label for="drivingLicense">Driving License</Label>
+              <Input
+                type="text"
+                name="drivingLicense"
+                id="drivingLicense"
+                value={formData.drivingLicense}
+                onChange={handleInputChange}
+              />
+            </FormGroup>
           </Form>
         );
       case 2:
         return (
           <Form>
             <FormGroup>
-              <Label for="role">Role</Label>
+              <Label for="userRole">Role</Label>
               <Input
                 type="select"
-                name="role"
-                id="role"
-                value={formData.role}
+                name="userRole"
+                id="userRole"
+                value={formData.userRole}
                 onChange={handleInputChange}
               >
                 <option value="">Select Role</option>
@@ -172,16 +163,17 @@ const RegistrationModal = ({ isOpen, toggle }) => {
                 <option value="Normal User">Normal User</option>
               </Input>
             </FormGroup>
+            {console.log("userName", formData)}
             {["DMV", "Insurance", "Service Center", "Dealership"].includes(
-              formData.role
+              formData.userRole
             ) && (
               <FormGroup>
-                <Label for="additionalId">{`${formData.role} ID`}</Label>
+                <Label for="idNo">{`${formData.userRole} ID`}</Label>
                 <Input
                   type="text"
-                  name="additionalId"
-                  id="additionalId"
-                  value={formData.additionalId}
+                  name="idNo"
+                  id="idNo"
+                  value={formData.idNo}
                   onChange={handleInputChange}
                 />
               </FormGroup>
@@ -195,7 +187,6 @@ const RegistrationModal = ({ isOpen, toggle }) => {
 
   return (
     <>
-      {" "}
       <Modal isOpen={isOpen} toggle={toggle}>
         <div className="modal-header">
           <h5 className="modal-title">User Registration</h5>
@@ -203,7 +194,7 @@ const RegistrationModal = ({ isOpen, toggle }) => {
         <div className="modal-body">{renderStepContent(step)}</div>
         <div className="modal-footer">
           {step > 1 && (
-            <Button className="blue-bordered-button"  onClick={previousStep}>
+            <Button className="blue-bordered-button" onClick={previousStep}>
               Back
             </Button>
           )}

@@ -41,6 +41,7 @@ class RetrieveUserTransaction:
     idNo: str
     email: str
     password: str
+    drivingLicense: str
 
 @strawberry.type
 class ServicingHistory:
@@ -172,11 +173,12 @@ def user_update(record, data):
     id = db.transactions.send_commit(fulfilled_token_tx)[4:] # Extract ID
     data = db.transactions.retrieve(txid=id)
     payload = RetrieveUserTransaction(
-                userName=data["asset"]["data"]["name"],
-                userRole=data["asset"]["data"]["role"],
-                idNo=data["asset"]["data"]["id_no"],
+                userName=data["asset"]["data"]["userName"],
+                userRole=data["asset"]["data"]["userRole"],
+                idNo=data["asset"]["data"]["idNo"],
                 email=data["asset"]["data"]["email"],
-                password=data["asset"]["data"]["password"]
+                password=data["asset"]["data"]["password"],
+                drivingLicense=data["asset"]["data"]["drivingLicense"]
                 )
     return payload
 
@@ -251,13 +253,15 @@ class Query:
     def getUserTransaction(self, user: UserLogin) -> RetrieveUserTransaction:
         url = f"{protocol}{db_root_url}{fetch_all_endpoint}"
         json_data = filter_by_user(url, user.userEmail, user.userPwd)
-        #print(json_data)
+        print(json_data)
+        data = json_data.get("asset", {}).get("data", {})
         payload = RetrieveUserTransaction(
-                    userName=json_data["asset"]["data"]["name"],
-                    userRole=json_data["asset"]["data"]["role"],
-                    idNo=json_data["asset"]["data"]["id_no"],
-                    email=json_data["asset"]["data"]["email"],
-                    password=json_data["asset"]["data"]["password"]
+                    userName=data.get("userName", ""),
+                    userRole=data.get("userRole", ""),
+                    idNo=data.get("idNo", ""),
+                    email=data.get("email", ""),
+                    password=data.get("password", ""),
+                    drivingLicense=data.get("drivingLicense", "")
                     )
         return payload
 
@@ -273,15 +277,17 @@ class Query:
     def getAllUserTransactions(self, id: strawberry.ID) -> List[RetrieveUserTransaction]:
         url = f"{protocol}{db_root_url}{fetch_all_endpoint}"
         json_data = get_all_user_data(url)
+        js_data = json_data.get("asset", {}).get("data", {})
         records = []
-        for data in json_data:
+        for data in js_data:
             try:
                 records.append(RetrieveUserTransaction(
-                userName=data["asset"]["data"]["name"],
-                userRole=data["asset"]["data"]["role"],
-                idNo=data["asset"]["data"]["id_no"],
-                email=data["asset"]["data"]["email"],
-                password=data["asset"]["data"]["password"]
+                userName=data.get("userName", ""),
+                userRole=data.get("userRole", ""),
+                idNo=data.get("idNo", ""),
+                email=data.get("email", ""),
+                password=data.get("password", ""),
+                drivingLicense=data.get("drivingLicense", "")
                 ))
             except Exception as e:
                 print(e)
@@ -293,54 +299,56 @@ class Query:
         url = f"{protocol}{db_root_url}{fetch_all_endpoint}"
         json_data = filter_by_car(url, car.numberPlate)
         print(json_data)
-
+        data = json_data.get("asset", {}).get("data", {})
 
         payload = RetrieveCarTransaction(
-                    chassisNo=json_data["asset"]["data"]["chassis_no"],
-                    engineNo=json_data["asset"]["data"]["engine_no"],
-                    manufacturer=json_data["asset"]["data"]["manufacturer"],
-                    manufacturingDate=json_data["asset"]["data"]["manufacturing_date"],
-                    numberPlate=json_data["asset"]["data"]["number_plate"],
-                    registerDate=json_data["asset"]["data"]["register_date"],
+                    chassisNo=data.get("chassisNo", ""),
+                    engineNo=data.get("engineNo", ""),
+                    manufacturer=data.get("manufacturer", ""),
+                    manufacturingDate=data.get("manufacturingDate", ""),
+                    numberPlate=data.get("numberPlate", ""),
+                    registerDate=data.get("registerDate", ""),
                     ownerHistory=[
                         OwnerHistory(
-                            ownerName=owner["owner_name"],
-                            ownershipStartDate=owner["ownership_start_date"],
-                            ownershipEndDate=owner["ownership_end_date"],
+                            ownerName=owner.get("ownerName", ""),
+                            ownershipStartDate=owner.get("ownershipStartDate", ""),
+                            ownershipEndDate=owner.get("ownershipEndDate", ""),
                         )
-                        for owner in json_data["asset"]["data"]["owner_history"]
-                        ],
-                    drivingLicense=json_data["asset"]["data"]["driving_license"],
-                    color=json_data["asset"]["data"]["color"],
-                    seating=json_data["asset"]["data"]["seating"],
-                    transmission=json_data["asset"]["data"]["transmission"],
-                    wheelBase=json_data["asset"]["data"]["wheel_base"],
-                    groundClearance=json_data["asset"]["data"]["ground_clearance"],
-                    driveType=json_data["asset"]["data"]["drive_type"],
-                    fuelType=json_data["asset"]["data"]["fuel_type"],
-                    carClass=json_data["asset"]["data"]["class"],
-                    model=json_data["asset"]["data"]["model"],
-                    insuranceNo=json_data["asset"]["data"]["insurance_no"],
-                    insuranceProvider=json_data["asset"]["data"]["insurance_provider"],
-                    policyEndDate=json_data["asset"]["data"]["policy_end_date"],
+                        for owner in data.get("ownerHistory", [])
+                    ],
+                    drivingLicense=data.get("drivingLicense", ""),
+                    color=data.get("color", ""),
+                    seating=data.get("seating", ""),
+                    transmission=data.get("transmission", ""),
+                    wheelBase=data.get("wheelBase", ""),
+                    groundClearance=data.get("groundClearance", ""),
+                    driveType=data.get("driveType", ""),
+                    fuelType=data.get("fuel", ""),
+                    carClass=data.get("class", ""),
+                    model=data.get("model", ""),
+                    insuranceNo=data.get("insuranceNo", ""),
+                    insuranceProvider=data.get("insuranceProvider", ""),
+                    policyEndDate=data.get("policyEndDate", ""),
                     insuranceHistory=[
                         InsuranceHistory(
-                           date=insurance["date"],
-                           cost=insurance["cost"],
-                           description=insurance["description"]
-                        ) for insurance in json_data["asset"]["data"]["insurance_history"]
+                            date=insurance.get("date", ""),
+                            cost=insurance.get("cost", ""),
+                            description=insurance.get("description", "")
+                        )
+                        for insurance in data.get("insuranceHistory", [])
                     ],
-                    mileage=json_data["asset"]["data"]["mileage"],
-                    odometerReading=json_data["asset"]["data"]["odometer_reading"],
+                    mileage=data.get("mileage", ""),
+                    odometerReading=data.get("odometerReading", ""),
                     servicingHistory=[
                         ServicingHistory(
-                            serviceCenter=service["service_center"],
-                            serviceDate=service["service_date"],
-                            serviceDescription=service["service_description"]
+                            serviceCenter=service.get("serviceCenter", ""),
+                            serviceDate=service.get("serviceDate", ""),
+                            serviceDescription=service.get("serviceDescription", "")
                         )
-                        for service in json_data["asset"]["data"]["servicing_history"]
+                        for service in data.get("servicingHistory", [])
                     ]
-                    )
+                )
+
         return payload
 
 
@@ -348,54 +356,56 @@ class Query:
     def getAllCarTransactions(self, id: strawberry.ID) -> List[RetrieveCarTransaction]:
         url = f"{protocol}{db_root_url}{fetch_all_endpoint}"
         json_data = get_all_cars_data(url)
+        js_data = json_data.get("asset", {}).get("data", {})
         records = []
-        for data in json_data:
+        for data in js_data:
             try:
             
                 records.append(RetrieveCarTransaction(
-                            chassisNo=data["asset"]["data"]["chassis_no"],
-                            engineNo=data["asset"]["data"]["engine_no"],
-                            manufacturer=data["asset"]["data"]["manufacturer"],
-                            manufacturingDate=data["asset"]["data"]["manufacturing_date"],
-                            numberPlate=data["asset"]["data"]["number_plate"],
-                            registerDate=data["asset"]["data"]["register_date"],
+                            chassisNo=data.get("chassisNo", ""),
+                            engineNo=data.get("engineNo", ""),
+                            manufacturer=data.get("manufacturer", ""),
+                            manufacturingDate=data.get("manufacturingDate", ""),
+                            numberPlate=data.get("numberPlate", ""),
+                            registerDate=data.get("registerDate", ""),
                             ownerHistory=[
                                 OwnerHistory(
-                                    ownerName=owner["owner_name"],
-                                    ownershipStartDate=owner["ownership_start_date"],
-                                    ownershipEndDate=owner["ownership_end_date"],
+                                    ownerName=owner.get("ownerName", ""),
+                                    ownershipStartDate=owner.get("ownershipStartDate", ""),
+                                    ownershipEndDate=owner.get("ownershipEndDate", ""),
                                 )
-                                for owner in data["asset"]["data"]["owner_history"]
-                                ],
-                            drivingLicense=data["asset"]["data"]["driving_license"],
-                            color=data["asset"]["data"]["color"],
-                            seating=data["asset"]["data"]["seating"],
-                            transmission=data["asset"]["data"]["transmission"],
-                            wheelBase=data["asset"]["data"]["wheel_base"],
-                            groundClearance=data["asset"]["data"]["ground_clearance"],
-                            driveType=data["asset"]["data"]["drive_type"],
-                            fuelType=data["asset"]["data"]["fuel_type"],
-                            carClass=data["asset"]["data"]["class"],
-                            model=data["asset"]["data"]["model"],
-                            insuranceNo=data["asset"]["data"]["insurance_no"],
-                            insuranceProvider=data["asset"]["data"]["insurance_provider"],
-                            policyEndDate=data["asset"]["data"]["policy_end_date"],
+                                for owner in data.get("ownerHistory", [])
+                            ],
+                            drivingLicense=data.get("drivingLicense", ""),
+                            color=data.get("color", ""),
+                            seating=data.get("seating", ""),
+                            transmission=data.get("transmission", ""),
+                            wheelBase=data.get("wheelBase", ""),
+                            groundClearance=data.get("groundClearance", ""),
+                            driveType=data.get("driveType", ""),
+                            fuelType=data.get("fuel", ""),
+                            carClass=data.get("class", ""),
+                            model=data.get("model", ""),
+                            insuranceNo=data.get("insuranceNo", ""),
+                            insuranceProvider=data.get("insuranceProvider", ""),
+                            policyEndDate=data.get("policyEndDate", ""),
                             insuranceHistory=[
                                 InsuranceHistory(
-                                   date=insurance["date"],
-                                   cost=insurance["cost"],
-                                   description=insurance["description"]
-                                ) for insurance in data["asset"]["data"]["insurance_history"]
+                                    date=insurance.get("date", ""),
+                                    cost=insurance.get("cost", ""),
+                                    description=insurance.get("description", "")
+                                )
+                                for insurance in data.get("insuranceHistory", [])
                             ],
-                            mileage=data["asset"]["data"]["mileage"],
-                            odometerReading=data["asset"]["data"]["odometer_reading"],
+                            mileage=data.get("mileage", ""),
+                            odometerReading=data.get("odometerReading", ""),
                             servicingHistory=[
                                 ServicingHistory(
-                                    serviceCenter=service["service_center"],
-                                    serviceDate=service["service_date"],
-                                    serviceDescription=service["service_description"]
+                                    serviceCenter=service.get("serviceCenter", ""),
+                                    serviceDate=service.get("serviceDate", ""),
+                                    serviceDescription=service.get("serviceDescription", "")
                                 )
-                                for service in data["asset"]["data"]["servicing_history"]
+                                for service in data.get("servicingHistory", [])
                             ]
                             ))
 

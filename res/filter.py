@@ -211,7 +211,7 @@ def get_filtered_car(url, number_plate):
         for obj in json_data[0]:
             asset_data = obj.get('asset', {}).get('data', {})
             if(asset_data.get('asset_type') == 'car'):
-                plate = asset_data.get('number_plate')
+                plate = asset_data.get('numberPlate')
                 if number_plate == plate:
                     filtered_objects.append(obj)
 
