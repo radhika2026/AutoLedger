@@ -24,42 +24,38 @@ const SearchComponent = () => {
       numberPlate: searchTerm,
     };
     try {
-      // sendRequest(FETCH_CAR(payload)).then((res) => {
-      //   if (res != {}) {
-      //     let ownerHistory = res.data.getCarTransaction.owner_history;
-      //     let lastOwner = ownerHistory[ownerHistory.length - 1];
-      //     res.currentOwner = lastOwner;
-      //     console.log("added successfully ", res);
-      //     navigate("/vehicleinfopage", { state: { carDetails: res } });
-      //   } else {
-      //     setToastMessage("No car found with the provided number plate.");
-      //     setShowToast(true);
-      //   }
-      // });
-      var res = {
-        chasisNumber: "12345678123456781",
-        class: "Z",
-        color: "12345678vj",
-        driveType: "Front Wheel",
-        drivingLicenseNumber: " 12345678",
-        engineNumber: "1234567812345678",
-        fuel: "Diesel",
-        groundClearance: "-0.01",
-        licensePlate: "12345678",
-        manufacturer: "df",
-        manufacturingDate: "2023-12-09",
-        model: "rfg",
-        odometerReading: "1",
-        ownerName: "12345678",
-        seating: "5",
-        transmission: "Automatic",
-        wheelBase: "0.98",
-      };
-      console.log("res", res);
+      sendRequest(FETCH_CAR(payload)).then((res) => {
+        if (res != {}) {
+          let ownerHistory = res.data.getCarTransaction.owner_history;
+          let lastOwner = ownerHistory[ownerHistory.length - 1];
+          res.currentOwner = lastOwner;
+          console.log("added successfully ", res);
+          navigate("/vehicleinfopage", { state: { carDetails: res } });
+        } else {
+          setToastMessage("No car found with the provided number plate.");
+          setShowToast(true);
+        }
+      });
+      // var res = {
+      //   chasisNumber: "12345678123456781",
+      //   class: "Z",
+      //   color: "12345678vj",
+      //   driveType: "Front Wheel",
+      //   drivingLicenseNumber: " 12345678",
+      //   engineNumber: "1234567812345678",
+      //   fuel: "Diesel",
+      //   groundClearance: "-0.01",
+      //   licensePlate: "12345678",
+      //   manufacturer: "df",
+      //   manufacturingDate: "2023-12-09",
+      //   model: "rfg",
+      //   odometerReading: "1",
+      //   ownerName: "12345678",
+      //   seating: "5",
+      //   transmission: "Automatic",
+      //   wheelBase: "0.98",
+      // };
       if (Object.keys(res).length !== 0) {
-        // let ownerHistory = res.data.getCarTransaction.ownerHistory;
-        // let lastOwner = ownerHistory[ownerHistory.length - 1];
-        // res.currentOwner = lastOwner;
         console.log("added successfully ", res);
         navigate("/vehicleinfopage", { state: { carDetails: res } });
       } else {;
