@@ -397,21 +397,14 @@ h4{
   /* Your existing media queries */
 }
 .bg-container {
-  background-image: url('./black.jpg') ;
+  background-image: url('./black.jpg');
   background-repeat: repeat-y;
-  background-size: cover;
+  background-size: auto; 
   background-position: center;
-  height: 100vh;
-  background-color: #070707; /* Off-White for Text */
+  min-height: 100vh;
+  background-color: #070707; 
 }
-.body {
-  background-image: url('./black.jpg') ;
-  background-repeat: repeat-y;
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
-  background-color: #070707;
-}
+
 
 .modal-content{
   background: #111;
