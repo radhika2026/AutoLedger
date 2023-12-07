@@ -1,13 +1,15 @@
-import React from 'react';
-import { Card } from 'react-bootstrap';
+import React from "react";
+import { Card } from "react-bootstrap";
 
-const VehicleHistoryComponent = () => {
-  // Static data for demonstration, replace with actual data fetching logic
-  const historyData = [
-    { date: '01/01/2020', event: 'Vehicle serviced', location: 'Service Station A' },
-    { date: '12/12/2020', event: 'Oil changed', location: 'Service Station B' },
-    // Add more history records as needed
-  ];
+const VehicleHistoryComponent = (historyData) => {
+  // const historyData = [
+  //   {
+  //     date: "01/01/2020",
+  //     event: "Vehicle serviced",
+  //     location: "Service Station A",
+  //   },
+  //   { date: "12/12/2020", event: "Oil changed", location: "Service Station B" },
+  // ];
 
   return (
     <Card className="vehicle-history-card">
@@ -16,7 +18,8 @@ const VehicleHistoryComponent = () => {
         <ul className="list-unstyled">
           {historyData.map((record, index) => (
             <li key={index}>
-              <strong>{record.date}</strong>: {record.event} at {record.location}
+              <strong>{record.date}</strong>: {record.event} at{" "}
+              {record.location}
             </li>
           ))}
         </ul>
