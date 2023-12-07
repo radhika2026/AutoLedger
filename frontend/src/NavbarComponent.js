@@ -19,7 +19,7 @@ const NavbarComponent = ({
             Home
           </Nav.Link>
           <Nav.Link href="/vehicleinfopage">Vehicle Information</Nav.Link>
-
+          <Nav.Link href="/search">Search</Nav.Link>
           {/* Conditional Links based on userRole */}
           {userRole === "DMV" && <Nav.Link href="/dmv">DMV Services</Nav.Link>}
           {userRole === "insurance" && (

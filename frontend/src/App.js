@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'; // Import the Cookies library
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import "./ServiceCenterForm.css";
-import HomeComponent from './HomeComponent';
+import HomeComponent from './SearchPage';
 import VehicleInfo from './VehicleInfoPage';
 import NavbarComponent from './NavbarComponent';
 import SignInModal from './SignInModal';
@@ -14,6 +14,8 @@ import DMV from './dmvOperations';
 import Insurance from './InsuranceDropdown';
 import UserProfileModal from './UserProfileModal';
 import Footer from './Footer';
+import SearchPage from './SearchPage';
+import HomePage from './HomeComponent';
 
 function App() {
   const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false);
@@ -52,7 +54,9 @@ function App() {
         onInsuranceActions={toggleInsuranceDropdown} // Pass toggle function to Insurance link
       />
       <Routes>
-        <Route path="/home" element={<HomeComponent />} />
+        <Route path="/" element={<Navigate replace to="/home" />} />
+        <Route path="/home" element={<HomePage />} /> 
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/vehicleinfopage" element={<VehicleInfo />} />
         <Route path="/Serv" element={<VehicleInfo />} />
         <Route path="/ServiceCenterForm" element={<ServiceCenterForm />} />
