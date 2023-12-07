@@ -35,7 +35,11 @@ const SignInModal = ({ isOpen, toggle }) => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const res = await sendRequest(FETCH_USER({ email, password }));
+        const payload = JSON.stringify({
+          userEmail: email,
+          userPwd: password,
+        });
+        const res = await sendRequest(FETCH_USER({ payload}));
         console.log("added successfully ", res);
         if (Object.keys(res).length !== 0) {
           //TODO: add cookie Arvind
