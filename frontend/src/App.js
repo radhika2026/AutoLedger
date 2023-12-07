@@ -13,6 +13,7 @@ import ServiceCenterForm from './ServiceCenterForm';
 import DMV from './dmvOperations';
 import Insurance from './InsuranceDropdown';
 import UserProfileModal from './UserProfileModal';
+import Footer from './Footer';
 
 function App() {
   const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false);
@@ -58,6 +59,7 @@ function App() {
         <Route path="/InsuranceDropdown" element={<Insurance />} />
         {/* Define other routes as needed */}
       </Routes>
+      <Footer/>
       <SignInModal isOpen={isSignInModalOpen} toggle={() => setSignInModalOpen(false)} />
       <UserProfileModal isOpen={isUserProfileModalOpen} toggle={toggleUserProfileModal} />
       <RegistrationModal isOpen={isRegistrationModalOpen} toggle={toggleRegistrationModal} />
