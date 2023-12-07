@@ -1,11 +1,3 @@
-.HomeComponent-background {
-  background-image: url('./—Pngtree—blue\ gradient\ molecular\ structure\ neural_1621236.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  color: #F8F8F8; /* Off-White for Text */
-}
 
 .navbar-custom {
   background-color: #0F52BA; /* Deep Blue */
@@ -27,19 +19,15 @@
 }
 
 .form-container {
-  background-color: #F8F8F8; /* Off White */
   padding: 2rem;
   border-radius: 0.5rem;
-  margin-top: 2rem;
+  margin-top: 2rem auto;
   width: 100%;
   max-width: 600px;
 }
 
-.form-heading {
-  color: #0F52BA; /* Deep Blue */
-  text-align: center;
-  margin-bottom: 3rem;
-}
+
+
 
 .search-bar-container {
   padding: 0.5rem 1rem;
@@ -163,18 +151,17 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-.form-container {
-  background-color: #fff; /* White */
-  margin: 2rem auto;
-  max-width: 800px;
-  width: 90%;
-}
+
+
 
 .form-heading {
+  color: #789ed7; /* Deep Blue */
+  text-align: center;
+  margin-bottom: 3rem;
   font-size: 3rem;
   font-weight: 800;
-  color: #0F52BA; /* Deep Blue */
 }
+
 
 /* Continuing from the previous styles */
 
@@ -277,21 +264,9 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-.form-container {
-  background-color: #F8F8F8; /* Off White for form background */
-  padding: 2rem;
-  border-radius: 0.5rem;
-  margin: 2rem auto;
-  max-width: 800px;
-  width: 90%;
-}
 
-.form-heading {
-  color: #0F52BA; /* Deep Blue for form headings */
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-}
+
+
 
 .form-group {
   margin-bottom: 1rem;
@@ -328,15 +303,7 @@ body {
 
 /* Specific styles for DMV pages */
 
-.dmv-page {
-  background-image: url('./—Pngtree—blue\ gradient\ molecular\ structure\ neural_1621236.png'); /* Update the path to your image */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  color: #F8F8F8; /* Off-White for text */
-}
+
 
 .dmv-page .form-group {
   margin-bottom: 1.5rem;
@@ -454,4 +421,13 @@ body {
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
   /* Your existing media queries */
+}
+.bg-container {
+  background-image: url('./—Pngtree—blue\ gradient\ molecular\ structure\ neural_1621236.png') ;
+  background-repeat: repeat-y;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: #F8F8F8; /* Off-White for Text */
 }

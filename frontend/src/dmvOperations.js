@@ -109,7 +109,7 @@ const DMV = () => {
     }
 
     if (operation === "ModifyCarEntry") {
-      var ownerList = dataWithTimestamp.ownerList
+      var ownerList = dataWithTimestamp.ownerHistory
       var current_owner = ownerList[ownerList.length - 1];
       if ( current_owner?.ownerName != ownerMap?.ownerName){
         ownerList.push(ownerMap);
