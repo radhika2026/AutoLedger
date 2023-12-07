@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card } from 'react-bootstrap';
+import { Card, Modal } from "react-bootstrap";
 import { Form, FormControl } from "react-bootstrap";
 import CreateCarEntry from "./CreateCarEntry";
 import ModifyCarEntry from "./ModifyCarEntry";
@@ -56,9 +56,9 @@ const DMV = () => {
       //   wheelBase: "0.98",
       // };
       var payload = {
-        "asset_type": "car",
-        "numberPlate": searchedData
-      }
+        asset_type: "car",
+        numberPlate: searchedData,
+      };
       sendRequest(FETCH_CAR(payload)).then((res) => {
         if (res != {}) {
           //TODO: REDIRECT TO VEHICLE INFO PAGE
@@ -99,7 +99,6 @@ const DMV = () => {
       };
       const payload = JSON.stringify(dataWithTimestamp);
       try {
-
         sendRequest(POST_TRANSACTION(metadata, payload)).then((res) => {
           //TODO: add alert to show successly added user and redirect to login page
           console.log("added successfully ", res);
@@ -110,9 +109,9 @@ const DMV = () => {
     }
 
     if (operation === "ModifyCarEntry") {
-      var ownerList = dataWithTimestamp.ownerHistory
+      var ownerList = dataWithTimestamp.ownerHistory;
       var current_owner = ownerList[ownerList.length - 1];
-      if ( current_owner?.ownerName != ownerMap?.ownerName){
+      if (current_owner?.ownerName != ownerMap?.ownerName) {
         ownerList.push(ownerMap);
       }
       dataWithTimestamp = {
@@ -135,55 +134,55 @@ const DMV = () => {
   return (
     <>
       <Card className="dmv-form-card p-3">
-      <div className="d-flex justify-content-center">
-        <Card style={{ width: '50rem' }} className="p-3">
-          <Card.Body>
-            <Card.Title className="text-center">DMV Services</Card.Title>
-            <Form className="p-3 border rounded">
-          <h3 className="text-center">DMV Services</h3>
-          <Form.Group>
-            <Form.Label>Operation you need to perform (DMV):</Form.Label>
-            <FormControl
-              as="select"
-              name="operation"
-              value={operation}
-              onChange={handleOperationChange}
-            >
-              <option value="">Select an operation</option>
-              <option value="CreateCarEntry">Create a new car entry</option>
-              <option value="ModifyCarEntry">
-                Modify existing car entries
-              </option>
-            </FormControl>
-          </Form.Group>
+        <div className="d-flex justify-content-center">
+          <Card style={{ width: "50rem" }} className="p-3">
+            <Card.Body>
+              <Card.Title className="text-center">DMV Services</Card.Title>
+              <Form className="p-3 border rounded">
+                <Form.Group>
+                  <Form.Label>Operation you need to perform (DMV):</Form.Label>
+                  <FormControl
+                    as="select"
+                    name="operation"
+                    value={operation}
+                    onChange={handleOperationChange}
+                  >
+                    <option value="">Select an operation</option>
+                    <option value="CreateCarEntry">
+                      Create a new car entry
+                    </option>
+                    <option value="ModifyCarEntry">
+                      Modify existing car entries
+                    </option>
+                  </FormControl>
+                </Form.Group>
 
-          {operation === "CreateCarEntry" && (
-            <CreateCarEntry
-              carData={carData}
-              handleCarDataChange={handleCarDataChange}
-              handleSubmit={handleSubmit}
-            />
-          )}
+                {operation === "CreateCarEntry" && (
+                  <CreateCarEntry
+                    carData={carData}
+                    handleCarDataChange={handleCarDataChange}
+                    handleSubmit={handleSubmit}
+                  />
+                )}
 
-          {operation === "ModifyCarEntry" && (
-            <ModifyCarEntry
-              carData={carData}
-              handleCarDataChange={handleCarDataChange}
-              handleSubmit={handleSubmit}
-              handleFetch={handleFetch}
-              isDataLoaded={isDataLoaded}
-              searchedData={searchedData}
-              handleSearchDataChange={handleSearchDataChange}
-            />
-          )}
-        </Form>
-          </Card.Body>
-        </Card>
-      </div>
+                {operation === "ModifyCarEntry" && (
+                  <ModifyCarEntry
+                    carData={carData}
+                    handleCarDataChange={handleCarDataChange}
+                    handleSubmit={handleSubmit}
+                    handleFetch={handleFetch}
+                    isDataLoaded={isDataLoaded}
+                    searchedData={searchedData}
+                    handleSearchDataChange={handleSearchDataChange}
+                  />
+                )}
+              </Form>
+            </Card.Body>
+          </Card>
+        </div>
       </Card>
     </>
   );
 };
 
 export default DMV;
-

@@ -38,7 +38,7 @@ const SignInModal = ({ isOpen, toggle }) => {
         const res = await sendRequest(FETCH_USER({ email, password }));
         console.log("added successfully ", res);
         navigate("/home");
-      //TODO: add cookie Arvind
+        //TODO: add cookie Arvind
       } catch (error) {
         // Handle error
         setToastMessage("Error Login, check later!");
@@ -55,8 +55,9 @@ const SignInModal = ({ isOpen, toggle }) => {
       <Modal show={isOpen} onHide={toggle} centered>
         <Modal.Body>
           <Form onSubmit={handleSubmit} className="text-center">
-            <Modal.Title className="mb-4">Sign In</Modal.Title>
-
+            <div className="modal-header">
+              <h5 className="modal-title">Sign In</h5>
+            </div>
             {showError && (
               <Alert
                 variant="danger"
@@ -66,42 +67,44 @@ const SignInModal = ({ isOpen, toggle }) => {
                 {errorMessage}
               </Alert>
             )}
+            <div className="modal-body">
+              <Form.Group controlId="formBasicEmail">
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  isInvalid={!!errors.email}
+                  className="mb-3 custom-input"
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-            <Form.Group controlId="formBasicEmail">
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                isInvalid={!!errors.email}
-                className="mb-3 custom-input"
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.email}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group controlId="formBasicPassword">
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                isInvalid={!!errors.password}
-                className="custom-input"
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.password}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Button
-              variant="primary"
-              type="submit"
-              className="w-100 mt-3 custom-button"
-            >
-              Sign In
-            </Button>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  isInvalid={!!errors.password}
+                  className="custom-input"
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.password}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </div>
+            <div className="modal-footer">
+              <Button
+                variant="primary"
+                type="submit"
+                className="blue-bordered-button"
+              >
+                Sign In
+              </Button>
+            </div>
           </Form>
         </Modal.Body>
       </Modal>

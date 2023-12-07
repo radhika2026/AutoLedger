@@ -1,6 +1,5 @@
 
 .navbar-custom {
-  background-color: #0F52BA; /* Deep Blue */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -11,6 +10,9 @@
   color: #00BFFF; /* Bright Blue */
 }
 
+p {
+color: #97FFF4;
+}
 .centered-form {
   display: flex;
   justify-content: center;
@@ -88,24 +90,15 @@
   font-family: 'Arial', sans-serif;
 }
 
-.card {
-  margin: 20px;
-  padding: 20px;
-  background: #F8F8F8; /* Off White */
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.card-title {
-  font-size: 1.5em;
-  color: #333333; /* Dark Grey */
-  margin-bottom: 20px;
-}
 
 .vehicle-history-card ul {
   padding-left: 20px;
 }
 
+h4{
+  color: #97FFF4;
+  text-align: center ;
+}
 .vehicle-history-card li {
   padding: 5px 0;
   border-bottom: 1px solid #eee;
@@ -144,12 +137,7 @@
   }
 }
 
-body {
-  background-color: white; /* Silver Gray for the body background */
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-}
+
 
 
 
@@ -216,14 +204,15 @@ body {
 .card {
   margin: 20px;
   padding: 20px;
-  background: #F8F8F8; /* Off White for card background */
+  background: #111; /* Off White for card background */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+
 .card-title {
   font-size: 1.5em;
-  color: #333333; /* Dark Grey for card title */
+  color: #97fff7; 
   margin-bottom: 20px;
 }
 
@@ -256,17 +245,6 @@ body {
     font-size: smaller;
   }
 }
-
-/* Body and global form styles */
-body {
-  background-color: #C0C0C0; /* Silver Gray for the body background */
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-}
-
-
-
 
 
 .form-group {
@@ -412,12 +390,7 @@ body {
 
 /* Your existing styles */
 
-body {
-  background-color: #C0C0C0; /* Silver Gray for the body background */
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-}
+
 
 /* Adjustments for smaller screens */
 @media (max-width: 768px) {
@@ -428,9 +401,32 @@ body {
   background-repeat: repeat-y;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   height: 100vh;
-  color: #F8F8F8; /* Off-White for Text */
+  background-color: #070707; /* Off-White for Text */
+}
+.body {
+  background-image: url('./black.jpg') ;
+  background-repeat: repeat-y;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-color: #070707;
+}
+
+.modal-content{
+  background: #111;
+  
+}
+
+.modal-header{
+  color: white;
+}
+.modal-title{
+  color: white;
+}
+
+.form-label{
+  color:#97FFF4
 }
 
 .glow-on-hover {
@@ -491,4 +487,23 @@ body {
   0% { background-position: 0 0; }
   50% { background-position: 400% 0; }
   100% { background-position: 0 0; }
+}
+
+.blue-bordered-button {
+  background-color: #111; /* Black background */
+  color: #97FFF4; /* Blue text */
+  border: 2px solid #97FFF4; /* Blue border */
+  padding: 10px 20px; /* Padding around the text */
+  text-align: center; /* Center the text inside the button */
+  text-decoration: none; /* No underline for text */
+  display: inline-block; /* Align it as inline-block */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+  border-radius: 5px; /* Rounded corners */
+  transition: all 0.3s; /* Transition for hover effect */
+}
+
+.blue-bordered-button:hover {
+  background-color: #97FFF4; /* Blue background on hover */
+  color: #111; /* White text on hover */
 }

@@ -10,7 +10,7 @@ const NavbarComponent = ({
   onUserProfileClick,
 }) => {
   return (
-    <Navbar variant="dark" expand="lg" className="shadow-5-strong">
+    <Navbar variant="dark tabs" expand="lg" className="shadow-5-strong navbar-custom">
       <Navbar.Brand href="/home">AutoLedger</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

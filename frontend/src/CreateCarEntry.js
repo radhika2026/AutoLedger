@@ -211,7 +211,9 @@ const CreateCarEntry = ({ carData, handleCarDataChange, handleSubmit }) => {
       </Form.Group>
 
       {/* Submit Button */}
-      <Button variant="primary" onClick={handleSubmit}>
+      <Button variant="primary" 
+      className="blue-bordered-button"
+      onClick={handleSubmit}>
         Submit
       </Button>
     </>

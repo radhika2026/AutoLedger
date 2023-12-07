@@ -199,23 +199,20 @@ const RegistrationModal = ({ isOpen, toggle }) => {
       <Modal isOpen={isOpen} toggle={toggle}>
         <div className="modal-header">
           <h5 className="modal-title">User Registration</h5>
-          <button type="button" className="close" onClick={toggle}>
-            <span>&times;</span>
-          </button>
         </div>
         <div className="modal-body">{renderStepContent(step)}</div>
         <div className="modal-footer">
           {step > 1 && (
-            <Button color="secondary" onClick={previousStep}>
+            <Button className="blue-bordered-button"  onClick={previousStep}>
               Back
             </Button>
           )}
           {step < 2 ? (
-            <Button color="primary" onClick={nextStep}>
+            <Button className="blue-bordered-button" onClick={nextStep}>
               Next
             </Button>
           ) : (
-            <Button color="success" onClick={handleSubmit}>
+            <Button className="blue-bordered-button" onClick={handleSubmit}>
               Submit
             </Button>
           )}
