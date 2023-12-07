@@ -45,10 +45,10 @@ export const FETCH_PRODUCT = (product) => `query {
 
 //Fetch user for login
 export const FETCH_USER = (user) => `query { 
-  getFilteredUserTransactions(
-    user: "${user}"
-  )   
-  }`;
+  getUserTransaction(user: ${user}) 
+  { userName userRole idNo email password drivingLicense } }
+
+`
 
 //Fetch Car Details
 export const FETCH_CAR = (searchedData) =>
