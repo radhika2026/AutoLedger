@@ -41,6 +41,7 @@ function App() {
   };
 
   return (
+    <div className="bg-container">
     <Router>
       <NavbarComponent
         onRegisterClick={toggleRegistrationModal}
@@ -63,6 +64,7 @@ function App() {
       <RegistrationModal isOpen={isRegistrationModalOpen} toggle={toggleRegistrationModal} />
       {/* <DMV isOpen={isDMVModalOpen} toggle={() => setDMVModalOpen(false)} /> */}
     </Router>
+    </div>
   );
 }
 
