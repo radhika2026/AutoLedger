@@ -7,6 +7,7 @@ import VehicleHistoryComponent from "./VehicleHistoryComponent";
 import VehicleSpecsComponent from "./VehicleSpecsComponent";
 import OwnerInfoComponent from "./OwnerDetailsComponent.js";
 import InsuranceInfoComponent from "./InsuranceInfoComponent.js";
+
 function VehicleInfo({ userRole }) {
   var userRole = "DMV";
   const location = useLocation();
@@ -17,12 +18,14 @@ function VehicleInfo({ userRole }) {
       <VehicleInfoComponent vehicleInfo={carDetails} />
       {console.log(userRole)}
       {(userRole === "vehicle owner" || userRole === "DMV") && (
-        <OwnerInfoComponent ownerata={carDetails} />
+        <OwnerInfoComponent ownerData={carDetails.ownerHistory || []} />
       )}
       {userRole === "vehicle owner" ||
-        (userRole === "insurance" && <InsuranceInfoComponent insuranceData = {carDetails} />)}
-      <VehicleHistoryComponent historyData={carDetails} />
-      <VehicleSpecsComponent specsData = {carDetails} />
+        (userRole === "insurance" && (
+          <InsuranceInfoComponent insuranceData={carDetails.insuranceHistory || []} />
+        ))}
+      <VehicleHistoryComponent historyData={carDetails.servicingHistory|| []} />
+      <VehicleSpecsComponent specsData={carDetails} />
     </div>
   );
 }
