@@ -38,14 +38,15 @@ const SignInModal = ({ isOpen, toggle }) => {
         const res = await sendRequest(FETCH_USER({ email, password }));
         console.log("added successfully ", res);
         navigate("/home");
-        //TODO: add cookie
+      //TODO: add cookie Arvind
       } catch (error) {
         // Handle error
-        setToastMessage("No car found with the provided number plate.");
+        setToastMessage("Error Login, check later!");
         setShowToast(true);
       }
     } else {
-      // TODO: Handle form not valid toast
+      setToastMessage("Error! Check Entries!");
+      setShowToast(true);
     }
   };
 

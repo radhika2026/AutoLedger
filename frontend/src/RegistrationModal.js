@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Modal, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { sendRequest } from "./utils/resdbApi";
 import { GENERATE_KEYS, POST_TRANSACTION } from "./utils/resdb";
+import { useNavigate } from "react-router-dom";
+import ToastComponent from "./ToastComponent";
 
 //TODO: remove encrypted keys
 const metadata = {
@@ -21,6 +23,8 @@ const RegistrationModal = ({ isOpen, toggle }) => {
     additionalId: "",
   });
   const [errors, setErrors] = useState({});
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const validateStepOne = () => {
     let errors = {};
@@ -75,22 +79,19 @@ const RegistrationModal = ({ isOpen, toggle }) => {
     const dataWithTimestamp = {
       ...formData,
       timestamp: timestamp,
-      asset_type: "user"
+      asset_type: "user",
     };
     const payload = JSON.stringify(dataWithTimestamp);
     console.log(payload);
-    try{
-      sendRequest(
-        POST_TRANSACTION(metadata, payload)
-      ).then((res) => {
-        //TODO: add alert to show successly added user and redirect to login page
+    try {
+      sendRequest(POST_TRANSACTION(metadata, payload)).then((res) => {
+        navigate("/home");
         console.log("added successfully ", res);
       });
+    } catch (error) {
+      setToastMessage("Error! Check Entries!");
+      setShowToast(true);
     }
-    catch(error){
-      //TODO: Internal server error toast/alert
-    }
-
   };
 
   const renderStepContent = (step) => {
@@ -191,31 +192,39 @@ const RegistrationModal = ({ isOpen, toggle }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} toggle={toggle}>
-      <div className="modal-header">
-        <h5 className="modal-title">User Registration</h5>
-        <button type="button" className="close" onClick={toggle}>
-          <span>&times;</span>
-        </button>
-      </div>
-      <div className="modal-body">{renderStepContent(step)}</div>
-      <div className="modal-footer">
-        {step > 1 && (
-          <Button color="secondary" onClick={previousStep}>
-            Back
-          </Button>
-        )}
-        {step < 2 ? (
-          <Button color="primary" onClick={nextStep}>
-            Next
-          </Button>
-        ) : (
-          <Button color="success" onClick={handleSubmit}>
-            Submit
-          </Button>
-        )}
-      </div>
-    </Modal>
+    <>
+      {" "}
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <div className="modal-header">
+          <h5 className="modal-title">User Registration</h5>
+          <button type="button" className="close" onClick={toggle}>
+            <span>&times;</span>
+          </button>
+        </div>
+        <div className="modal-body">{renderStepContent(step)}</div>
+        <div className="modal-footer">
+          {step > 1 && (
+            <Button color="secondary" onClick={previousStep}>
+              Back
+            </Button>
+          )}
+          {step < 2 ? (
+            <Button color="primary" onClick={nextStep}>
+              Next
+            </Button>
+          ) : (
+            <Button color="success" onClick={handleSubmit}>
+              Submit
+            </Button>
+          )}
+        </div>
+      </Modal>
+      <ToastComponent
+        show={showToast}
+        message={toastMessage}
+        onClose={() => setShowToast(false)}
+      />
+    </>
   );
 };
 
