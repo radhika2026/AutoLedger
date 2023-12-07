@@ -55,11 +55,7 @@ const DMV = () => {
       //   transmission: "Automatic",
       //   wheelBase: "0.98",
       // };
-      var payload = {
-        asset_type: "car",
-        numberPlate: searchedData,
-      };
-      sendRequest(FETCH_CAR(payload)).then((res) => {
+      sendRequest(FETCH_CAR(searchedData)).then((res) => {
         if (res != {}) {
           //TODO: REDIRECT TO VEHICLE INFO PAGE
           setCarData(res);
