@@ -44,11 +44,14 @@ export const FETCH_PRODUCT = (product) => `query {
 }`;
 
 //Fetch user for login
-export const FETCH_USER = (user) => `query { 
-  getUserTransaction(user: ${user}) 
+export const FETCH_USER = (email, password) => `query { 
+  getUserTransaction(user: {
+    "userEmail" : ${email},
+    "userPwd" : ${password}
+  }) 
   { userName userRole idNo email password drivingLicense } }
 
-`
+`;
 
 //Fetch Car Details
 export const FETCH_CAR = (searchedData) =>
@@ -97,4 +100,4 @@ export const UPDATE_CAR = (metadata, car) => `mutation {
     """
     })
 
-}`
+}`;
