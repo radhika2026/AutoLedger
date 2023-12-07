@@ -12,6 +12,7 @@ const metadata = {
   recipientPublicKey: "HvNRQznqrRdCwSKn6R8ZoQE4U3aobQShajK1NShQhGRn",
 };
 
+
 const RegistrationModal = ({ isOpen, toggle }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -22,6 +23,7 @@ const RegistrationModal = ({ isOpen, toggle }) => {
     role: "",
     additionalId: "",
   });
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
