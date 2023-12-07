@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // make sure bootstrap CSS is imported
+import './NavbarComponent.css';
 
 const NavbarComponent = ({
   userRole,
@@ -14,7 +15,7 @@ const NavbarComponent = ({
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-          <Nav.Link href="/home" active>
+          <Nav.Link href="/home">
             Home
           </Nav.Link>
           <Nav.Link href="/vehicleinfopage">Vehicle Information</Nav.Link>
@@ -31,8 +32,6 @@ const NavbarComponent = ({
           {userRole === "service center" && (
             <Nav.Link href="/ServiceCenterForm">Service Center</Nav.Link>
           )}
-
-          <Nav.Link disabled>Disabled</Nav.Link>
         </Nav>
 
         {/* Right-aligned links, replace these with your actual login/register/profile links */}

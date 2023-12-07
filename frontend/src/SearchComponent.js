@@ -41,7 +41,7 @@ const SearchComponent = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <Button variant="outline-success" type="submit">Search</Button>
+      <Button className = "glow-on-hover" type="submit">Search</Button>
     </Form>
   );
 };
