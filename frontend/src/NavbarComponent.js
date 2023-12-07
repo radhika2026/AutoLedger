@@ -2,6 +2,9 @@ import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // make sure bootstrap CSS is imported
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+
 const NavbarComponent = ({
   userRole,
   onRegisterClick,
@@ -10,7 +13,7 @@ const NavbarComponent = ({
 }) => {
   return (
     <Navbar variant="dark" expand="lg" className="shadow-5-strong">
-      <Navbar.Brand href="/home">AutoLedger</Navbar.Brand>
+      <Navbar.Brand href="/home"> <img src={process.env.PUBLIC_URL + 'A.png'} alt="GitHub Icon" style={{ marginLeft: '5px', height: '40px' }} />AutoLedger </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
@@ -34,6 +37,10 @@ const NavbarComponent = ({
 
           <Nav.Link disabled>Disabled</Nav.Link>
         </Nav>
+          {/* GitHub Link with Icon */}
+          <Nav.Link href="https://github.com/your-github-username" target="_blank" rel="noopener noreferrer" style={{ paddingRight: '10px' }}>
+  <FontAwesomeIcon icon={faGithub} /> 
+</Nav.Link>
 
         {/* Right-aligned links, replace these with your actual login/register/profile links */}
         <Nav>
