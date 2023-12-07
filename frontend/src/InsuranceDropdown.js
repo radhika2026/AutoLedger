@@ -1,8 +1,5 @@
-
-
-
 import React, { useState } from 'react';
-import { Form, Button, Modal, FormControl } from 'react-bootstrap';
+import { Card, Form, Button, Modal, FormControl } from 'react-bootstrap';
 import { Input } from 'reactstrap';
 
 const InsuranceDropdown = () => {
@@ -152,11 +149,13 @@ const InsuranceDropdown = () => {
         // Perform delete operation and close the modal
         setShowDeleteConfirmationModal(false);
     };
-
+    
     return (
-        <>
-            <div className="d-flex justify-content-center">
-                <Form className="p-3 border rounded">
+        <div className="d-flex justify-content-center">
+            <Card className="p-3" style={{ width: '50rem' }}>
+                <Card.Body>
+                    <Card.Title className="text-center">Insurance Services</Card.Title>
+                    <Form className="p-3 border rounded">
                     <h3 className="text-center">Insurance Services</h3>
                     <Form.Group>
                         <Form.Label>Operation :</Form.Label>
@@ -325,13 +324,11 @@ const InsuranceDropdown = () => {
                         </>
                     )}
                 </Form>
-            </div>
-        </>
+
+                </Card.Body>
+            </Card>
+        </div>
     );
 };
 
 export default InsuranceDropdown;
-
-
-
-

@@ -1,0 +1,51 @@
+/* InsuranceDropdown.css */
+
+/* General styling for the card layout */
+.card {
+    margin-top: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Styling for the card header */
+.card-header {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+/* Styling for the card body */
+.card-body {
+    padding: 20px;
+}
+
+/* Styling for form elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Style adjustments for buttons */
+.button {
+    margin-top: 10px;
+}
+
+/* Specific styles for the main container */
+.d-flex {
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensuring the form does not stretch too much on larger screens */
+.form {
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Title styles */
+.card-title {
+    margin-bottom: 20px;
+}

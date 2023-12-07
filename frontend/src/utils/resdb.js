@@ -23,7 +23,10 @@ export const POST_TRANSACTION = (metadata, asset) => `mutation {
   }
 }`;
 
-export const FETCH_TRANSACTION = (signerPublicKey, recipientPublicKey) => `query { 
+export const FETCH_TRANSACTION = (
+  signerPublicKey,
+  recipientPublicKey
+) => `query { 
   getFilteredTransactions(filter: {
   ownerPublicKey:"${signerPublicKey}"
   recipientPublicKey:"${recipientPublicKey}"
@@ -41,18 +44,44 @@ export const FETCH_PRODUCT = (product) => `query {
 }`;
 
 //Fetch user for login
-export const FETCH_USER =(user) => `query { 
+export const FETCH_USER = (user) => `query { 
   getFilteredUserTransactions(
     user: "${user}"
   )   
-  }`
+  }`;
 
 //Fetch Car Details
-export const FETCH_CAR = (car) => `query {
-   getCarTransaction(
-    car:"${car}"
-    )
-   }`
+export const FETCH_CAR = (searchedData) =>
+  `query { getCarTransaction(car: { 
+    numberPlate: "${searchedData}" }) 
+  { chassisNo
+   engineNo 
+   manufacturer
+  manufacturingDate 
+  numberPlate 
+  registerDate 
+  ownerHistory { 
+          ownerName 
+          ownershipStartDate 
+          ownershipEndDate 
+  } 
+  drivingLicense 
+  color 
+  seating 
+  transmission 
+  wheelBase 
+  groundClearance 
+  driveType 
+  fuelType 
+  carClass 
+  model 
+  insuranceNo 
+  insuranceProvider 
+  policyEndDate 
+  insuranceHistory 
+  { date cost description } 
+  mileage odometerReading 
+  servicingHistory { serviceCenter serviceDate serviceDescription } } }`;
 
 //Update Car Details
 export const UPDATE_CAR = (metadata, car) => `mutation {

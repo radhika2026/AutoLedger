@@ -7,7 +7,7 @@ import VehicleSpecsComponent from './VehicleSpecsComponent';
 import OwnerInfoComponent from './OwnerDetailsComponent.js';
 import InsuranceInfoComponent from './InsuranceInfoComponent.js';
 function VehicleInfo({ userRole }) {
-  var userRole = 'vehicle owner'
+  var userRole = 'DMV'
   return (
     <div className="VehicleInfo-container">
       <VehicleInfoComponent />
