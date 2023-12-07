@@ -60,12 +60,12 @@ function App() {
         <Route path="/InsuranceDropdown" element={<Insurance />} />
         {/* Define other routes as needed */}
       </Routes>
-      <Footer/>
       <SignInModal isOpen={isSignInModalOpen} toggle={() => setSignInModalOpen(false)} />
       <UserProfileModal isOpen={isUserProfileModalOpen} toggle={toggleUserProfileModal} />
       <RegistrationModal isOpen={isRegistrationModalOpen} toggle={toggleRegistrationModal} />
       {/* <DMV isOpen={isDMVModalOpen} toggle={() => setDMVModalOpen(false)} /> */}
     </Router>
+    <Footer/>
     </div>
   );
 }
