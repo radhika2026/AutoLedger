@@ -1,0 +1,12 @@
+.footer {
+    background-color: #0F52BA; /* Deep Blue */
+    color: #F8F8F8; /* Off White */
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 14px;
+  }
+  

@@ -440,3 +440,18 @@ body {
   padding: 10px;
   font-weight: bold;
 }
+
+
+/* Your existing styles */
+
+body {
+  background-color: #C0C0C0; /* Silver Gray for the body background */
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  /* Your existing media queries */
+}
