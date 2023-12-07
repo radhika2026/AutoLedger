@@ -44,9 +44,10 @@ export const FETCH_PRODUCT = (product) => `query {
 }`;
 
 //Fetch user for login
-export const FETCH_USER = (payload) => `query { 
+export const FETCH_USER = (email, password) => `query { 
   getUserTransaction(user: {
-    ${payload}
+    userEmail: "${email}",
+    userPwd: "${password}
   }) 
   { userName userRole idNo email password drivingLicense } }
 
