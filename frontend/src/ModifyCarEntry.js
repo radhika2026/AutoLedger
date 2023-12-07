@@ -59,7 +59,12 @@ const ModifyCarEntry = ({
             <Input
               type="text"
               name="ownerName"
-              value={carData.ownerHistory[ownerHistory.length -1].ownerName}
+              value={
+                carData.ownerHistory && carData.ownerHistory.length > 0
+                  ? carData.ownerHistory[carData.ownerHistory.length - 1]
+                      .ownerName
+                  : ""
+              }
               onChange={handleCarDataChange}
             />
           </Form.Group>
