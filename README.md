@@ -64,7 +64,7 @@
 3. **Project Overview Blog Website:** Took the initiative to create a Blog website for external stakeholders, providing a simplified and accessible overview of our project.
 
 
-## Siva, Disha, Radhika, Arvind
+## Siva, Disha, Radhika, Arvind, Aakash
 
 1. Part of designing the architecture for the AutoLedger application, defining the comprehensive technologies to be used for full-stack development.
 
