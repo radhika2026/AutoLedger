@@ -14,22 +14,7 @@ const NavbarComponent = ({
   onUserProfileClick,
 }) => {
 
-  // const isLoggedIn = Cookies.get('isLoggedIn');
-
-  //New Part
-
-  const [isLoggedIn, setIsLoggedIn] = useState(Cookies.get('isLoggedIn') === 'true');
-
-  useEffect(() => {
-    const handleCookieChange = () => {
-      setIsLoggedIn(Cookies.get('isLoggedIn') === 'true');
-    };
-
-    window.addEventListener('cookiechange', handleCookieChange);
-    return () => window.removeEventListener('cookiechange', handleCookieChange);
-  }, []);
-
-  //End New Part
+  const isLoggedIn = Cookies.get('isLoggedIn');
   
   return (
     <Navbar variant="dark tabs" expand="lg" className="shadow-5-strong navbar-custom">
