@@ -56,7 +56,7 @@ const ServiceCenterForm = () => {
     } catch (error) {}
     //CRITICAL: ADD Update Car API
   };
-  if (userRole === "Insurance"){
+  if (userRole === "Service Center"){
     return (
       <div className="Service-form-container">
         <form onSubmit={handleSubmit}>
