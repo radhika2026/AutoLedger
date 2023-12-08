@@ -9,7 +9,7 @@ const VehicleSpecsComponent = ({ specsData }) => {
         <Table striped bordered hover>
           <tbody>
             {Object.entries(specsData).map(([key, value]) => (
-              typeof value === 'string' && (
+             ( typeof value === 'string') && (value != "") && (
                 <tr key={key}>
                   <td>{key.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</td>
                   <td>{value}</td>
