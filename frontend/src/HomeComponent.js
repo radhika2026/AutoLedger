@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Footer from './Footer';
+import logo from './A.png';
 import Button from 'react-bootstrap/Button';
 import './HomePage.css';
 import SignInModal from './SignInModal'; // Import SignInModal
@@ -16,7 +17,7 @@ const HomePage = () => {
     <>
       <div className="hero-section d-flex justify-content-center align-items-center text-center">
         <div className="mx-auto">
-          <img src={'./AutoLedger.webp'} alt="AutoLedger Logo" className="logo"/>
+          <img src={logo} alt="AutoLedger Logo" className="logo"/>
           <h1>Welcome to AutoLedger</h1>
           <p>Your ultimate vehicle management solution.</p>
           <div className="cta-buttons">

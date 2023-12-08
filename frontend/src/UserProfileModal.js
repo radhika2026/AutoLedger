@@ -1,35 +1,38 @@
 import React from 'react';
-import { Modal, Button, Image } from 'react-bootstrap';
+import Cookies from 'js-cookie';
+import { Modal, Button } from 'react-bootstrap';
 
-const UserProfileModal = ({ isOpen, toggle }) => {
+const UserProfileModal = ({ isOpen, toggle }, ) => {
+  const userName =  Cookies.get('userName')
+  const userRole =  Cookies.get('userRole')
+  // const idNo =  Cookies.get('idNo')
+  const idNo = ' '
+  const email = Cookies.get('email')
+  const drivingLicense = Cookies.get('drivingLicense')
+
   return (
     <Modal show={isOpen} onHide={toggle}>
       <Modal.Header closeButton>
         <Modal.Title>Your Profile</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div style={{ textAlign: 'center' }}>
-          <Image
-            src="https://via.placeholder.com/150"
-            alt="User Avatar"
-            roundedCircle
-            style={{ marginBottom: '20px' }}
-          />
-        </div>
         <p>
-          <strong>Name:</strong> John Doe
+          <strong>Name:</strong> {userName} 
         </p>
         <p>
-          <strong>Email:</strong> john.doe@example.com
+          <strong>Email:</strong> {email}
+        </p>
+        {idNo && (
+          <p>
+            <strong>Secondary ID Number:</strong> {idNo}
+          </p>
+        )}
+
+        <p>
+          <strong>Driver's Licence Number:</strong> {drivingLicense}
         </p>
         <p>
-          <strong>Age:</strong> 30
-        </p>
-        <p>
-          <strong>Location:</strong> City, Country
-        </p>
-        <p>
-          <strong>User Type:</strong> User
+          <strong>User Type:</strong> {userRole}
         </p>
         {/* Add more user details as needed */}
       </Modal.Body>

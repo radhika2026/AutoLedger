@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Cookies from 'js-cookie'; // Import the Cookies library
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+// import { isUserLoggedIn } from './utils'
 import "./ServiceCenterForm.css";
 import HomeComponent from './SearchPage';
 import VehicleInfo from './VehicleInfoPage';
@@ -24,6 +26,8 @@ function App() {
   const [isInsuranceDropdownOpen, setInsuranceDropdownOpen] = useState(false); // New state for Insurance dropdown
   const [isUserProfileModalOpen, setUserProfileModalOpen] = useState(false);
   const [userRole, setUserRole] = useState(null);
+  // const navigate = useNavigate();
+
 
   useEffect(() => {
     // Update the user role from cookie on component mount

@@ -77,6 +77,10 @@ const RegistrationModal = ({ isOpen, toggle }) => {
     };
     const payload = JSON.stringify(dataWithTimestamp);
     console.log(payload);
+    toggle()
+    navigate("/home");
+      console.log("added successfully ");
+
     try {
       sendRequest(POST_TRANSACTION(metadata, payload)).then((res) => {
         navigate("/home");
@@ -159,12 +163,11 @@ const RegistrationModal = ({ isOpen, toggle }) => {
                 <option value="DMV">DMV</option>
                 <option value="Service Center">Service Center</option>
                 <option value="Insurance">Insurance</option>
-                <option value="Dealership">Dealership</option>
                 <option value="Normal User">Normal User</option>
               </Input>
             </FormGroup>
             {console.log("userName", formData)}
-            {["DMV", "Insurance", "Service Center", "Dealership"].includes(
+            {["DMV", "Insurance", "Service Center"].includes(
               formData.userRole
             ) && (
               <FormGroup>

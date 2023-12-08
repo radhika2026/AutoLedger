@@ -8,6 +8,8 @@ import { sendRequest } from "./utils/resdbApi";
 import "./App.css"; // Import the custom CSS file
 import { useNavigate } from "react-router-dom";
 import ToastComponent from "./ToastComponent";
+import Cookies from 'js-cookie';
+
 
 const SignInModal = ({ isOpen, toggle }) => {
   const navigate = useNavigate();
@@ -36,11 +38,21 @@ const SignInModal = ({ isOpen, toggle }) => {
     if (validateForm()) {
       try {
         const res = await sendRequest(FETCH_USER(email, password));
+        
         console.log("added successfully ", res);
+
         if (Object.keys(res).length !== 0) {
-          //TODO: add cookie Arvind
-          navigate("/home");
-        } else {
+          Cookies.set('isLoggedIn', 'true', { expires: 1 }); // Expires in 1 day
+          Cookies.set('userName', res.userName)
+          Cookies.set('userRole', res.userRole)
+          Cookies.set('idNo', res.idNo)
+          Cookies.set('email', res.email)
+          Cookies.set('drivingLicense', res.drivingLicense)
+          toggle(); // Close the modal
+          navigate("/search");
+
+        } 
+        else {
           setToastMessage("Invalid credentials!");
           setShowToast(true);
         }

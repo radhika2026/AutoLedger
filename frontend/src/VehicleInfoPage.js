@@ -7,9 +7,10 @@ import VehicleHistoryComponent from "./VehicleHistoryComponent";
 import VehicleSpecsComponent from "./VehicleSpecsComponent";
 import OwnerInfoComponent from "./OwnerDetailsComponent.js";
 import InsuranceInfoComponent from "./InsuranceInfoComponent.js";
+import Cookies from "js-cookie";
 
-function VehicleInfo({ userRole }) {
-  var userRole = "DMV";
+function VehicleInfo() {
+  const userRole = Cookies.get('userRole');
   const location = useLocation();
   const carDetails = location.state?.carDetails;
   console.log("carDetails", carDetails);
