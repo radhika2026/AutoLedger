@@ -5,6 +5,7 @@ import CreateCarEntry from "./CreateCarEntry";
 import ModifyCarEntry from "./ModifyCarEntry";
 import { sendRequest } from "./utils/resdbApi";
 import { FETCH_CAR, POST_TRANSACTION, UPDATE_CAR } from "./utils/resdb";
+import ToastComponent from "./ToastComponent";
 
 const metadata = {
   signerPublicKey: "HvNRQznqrRdCwSKn6R8ZoQE4U3aobQShajK1NShQhGRn",
@@ -17,6 +18,8 @@ const DMV = () => {
   const [carData, setCarData] = useState({});
   const [isDataLoaded, setIsDataLoaded] = useState(false);
   const [searchedData, setSearchedData] = useState("");
+  const [toastMessage, setToastMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   const handleOperationChange = (event) => {
     setOperation(event.target.value);
@@ -59,13 +62,15 @@ const DMV = () => {
         if (res != {}) {
           //TODO: REDIRECT TO VEHICLE INFO PAGE
           setCarData(res.data.getCarTransaction);
+          setIsDataLoaded(true);
         } else {
-          //TODO: pop up no car found
+          setToastMessage("Car Not Found");
+          setShowToast(true);
         }
-      });
-      setIsDataLoaded(true);
+      });      
     } catch (error) {
-      console.error("Error fetching car details:", error);
+      setToastMessage("Error! Check Entries!");
+      setShowToast(true);
       setIsDataLoaded(false);
     }
   };
@@ -177,6 +182,11 @@ const DMV = () => {
           </Card>
         </div>
       </Card>
+      <ToastComponent
+        show={showToast}
+        message={toastMessage}
+        onClose={() => setShowToast(false)}
+      />
     </>
   );
 };
