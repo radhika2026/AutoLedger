@@ -33,24 +33,26 @@ const DMV = () => {
     console.log("name", name, value, carData);
     if (name === "ownerName") {
       setCarData((p) => {
-        if (ownershipLenght == p.ownerHistory.length) {
-          const updatedOwnership = [
-            ...p.ownerHistory,
-            {
-              ownerName: value,
-              ownershipEndDate: "",
-              ownershipStartDate: new Date().toLocaleDateString(),
-            },
-          ];
-          return { ...p, ownerHistory: updatedOwnership };
-        } else {
-          const updatedOwnership = [...p.ownerHistory];
-          const updatedNode = {
-            ...updatedOwnership[updatedOwnership.length - 1],
-          };
-          updatedNode.ownerName = value;
-          updatedOwnership[updatedOwnership.length - 1] = updatedNode;
-          return { ...p, ownerHistory: updatedOwnership };
+        if ("ownerHistory" in p) {
+          if (ownershipLenght == p.ownerHistory.length) {
+            const updatedOwnership = [
+              ...p.ownerHistory,
+              {
+                ownerName: value,
+                ownershipEndDate: "",
+                ownershipStartDate: new Date().toLocaleDateString(),
+              },
+            ];
+            return { ...p, ownerHistory: updatedOwnership };
+          } else {
+            const updatedOwnership = [...p.ownerHistory];
+            const updatedNode = {
+              ...updatedOwnership[updatedOwnership.length - 1],
+            };
+            updatedNode.ownerName = value;
+            updatedOwnership[updatedOwnership.length - 1] = updatedNode;
+            return { ...p, ownerHistory: updatedOwnership };
+          }
         }
       });
     }
@@ -135,8 +137,6 @@ const DMV = () => {
         },
       };
 
-      
-
       sendRequest(FETCH_CAR(searchedData)).then((res) => {
         if (res != {}) {
           //TODO: REDIRECT TO VEHICLE INFO PAGE
@@ -146,7 +146,8 @@ const DMV = () => {
         } else {
           setToastMessage("Car Not Found");
           setShowToast(true);
-        }setShowToast(true);
+        }
+        setShowToast(true);
       });
     } catch (error) {
       setToastMessage("Error! Check Entries!");
