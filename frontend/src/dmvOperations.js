@@ -88,7 +88,7 @@ const DMV = () => {
     };
 
     var ownerMap = {};
-    ownerMap.ownerName = carData.ownerName;
+    ownerMap.ownerName = dataWithTimestamp.ownerName;
     ownerMap.ownershipStartDate = formattedDate;
     ownerMap.ownershipEndDate = "";
 
