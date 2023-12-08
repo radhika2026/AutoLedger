@@ -12,6 +12,7 @@ const metadata = {
   signerPrivateKey: "2QdMTdaNj8mJjduXFAsHieVmcsBcqeWQyW9v891kZEXC",
   recipientPublicKey: "HvNRQznqrRdCwSKn6R8ZoQE4U3aobQShajK1NShQhGRn",
 };
+var ownershipLenght = 0;
 
 const DMV = () => {
   const [operation, setOperation] = useState("");
@@ -29,6 +30,30 @@ const DMV = () => {
 
   const handleCarDataChange = (event) => {
     const { name, value } = event.target;
+    console.log("name", name, value, carData);
+    if (name === "ownerName") {
+      setCarData((p) => {
+        if (ownershipLenght == p.ownerHistory.length) {
+          const updatedOwnership = [
+            ...p.ownerHistory,
+            {
+              ownerName: value,
+              ownershipEndDate: "",
+              ownershipStartDate: new Date().toLocaleDateString(),
+            },
+          ];
+          return { ...p, ownerHistory: updatedOwnership };
+        } else {
+          const updatedOwnership = [...p.ownerHistory];
+          const updatedNode = {
+            ...updatedOwnership[updatedOwnership.length - 1],
+          };
+          updatedNode.ownerName = value;
+          updatedOwnership[updatedOwnership.length - 1] = updatedNode;
+          return { ...p, ownerHistory: updatedOwnership };
+        }
+      });
+    }
     setCarData((prevState) => ({ ...prevState, [name]: value }));
   };
 
@@ -39,35 +64,90 @@ const DMV = () => {
 
   const handleFetch = (event) => {
     try {
-      // const response = {
-      //   chasisNumber: "12345678123456781",
-      //   class: "Z",
-      //   color: "12345678vj",
-      //   driveType: "Front Wheel",
-      //   drivingLicenseNumber: " 12345678",
-      //   engineNumber: "1234567812345678",
-      //   fuel: "Diesel",
-      //   groundClearance: "-0.01",
-      //   licensePlate: "12345678",
-      //   manufacturer: "df",
-      //   manufacturingDate: "2023-12-09",
-      //   model: "rfg",
-      //   odometerReading: "1",
-      //   ownerName: "12345678",
-      //   seating: "5",
-      //   transmission: "Automatic",
-      //   wheelBase: "0.98",
-      // };
+      var res = {
+        data: {
+          getCarTransaction: {
+            chassisNo: "CH5453",
+            engineNo: "EN134F",
+            manufacturer: "BMW",
+            manufacturingDate: "2023-12-01",
+            numberPlate: "LICA123",
+            registerDate: "",
+            ownerHistory: [
+              {
+                ownerName: "Batman",
+                ownershipStartDate: "2023-12-06",
+                ownershipEndDate: "",
+              },
+            ],
+            drivingLicense: "DL5432",
+            color: "black",
+            seating: "2",
+            transmission: "Automatic",
+            wheelBase: "1.2",
+            groundClearance: "0.5",
+            driveType: "Front Wheel",
+            fuelType: "Petrol",
+            carClass: "ACNS",
+            model: "SDA",
+            insuranceNo: "",
+            insuranceProvider: "",
+            policyEndDate: "",
+            insuranceHistory: [
+              {
+                cost: "100",
+                date: "today",
+                description: "Accident",
+              },
+              {
+                cost: "150",
+                date: "yesterday",
+                description: "Accident",
+              },
+            ],
+            mileage: "",
+            odometerReading: "12344",
+            servicingHistory: [
+              {
+                serviceCenter: "AutoCaring Service Center",
+                serviceDate: "01-09-2023",
+                serviceDescription: "Oil change, filter replacement",
+              },
+              {
+                serviceCenter: "AutoCare Service Center",
+                serviceDate: "11-02-2022",
+                serviceDescription: "Oil change, filter replacement",
+              },
+            ],
+            ownerHistory: [
+              {
+                ownerName: "John Doe",
+                ownershipStartDate: "12-01-2021",
+                ownershipEndDate: "CA", // State in which it was registered
+              },
+              {
+                ownerName: "Radhika",
+                ownershipStartDate: "12-01-2021",
+                ownershipEndDate: "CA", // State in which it was registe
+              },
+            ],
+          },
+        },
+      };
+
+      
+
       sendRequest(FETCH_CAR(searchedData)).then((res) => {
         if (res != {}) {
           //TODO: REDIRECT TO VEHICLE INFO PAGE
+          ownershipLenght = res.data.getCarTransaction.ownerHistory.length;
           setCarData(res.data.getCarTransaction);
           setIsDataLoaded(true);
         } else {
           setToastMessage("Car Not Found");
           setShowToast(true);
-        }
-      });      
+        }setShowToast(true);
+      });
     } catch (error) {
       setToastMessage("Error! Check Entries!");
       setShowToast(true);
@@ -111,22 +191,25 @@ const DMV = () => {
     }
 
     if (operation === "ModifyCarEntry") {
-      var ownerList = dataWithTimestamp.ownerHistory;
-      var current_owner = ownerList[ownerList.length - 1];
-      if (current_owner?.ownerName != ownerMap?.ownerName) {
-        ownerList.push(ownerMap);
+      // var ownerList = dataWithTimestamp.ownerHistory;
+      // var current_owner = ownerList[ownerList.length - 1];
+      // if (current_owner?.ownerName != ownerMap?.ownerName) {
+      //   ownerList.push(ownerMap);
+      // }
+      // dataWithTimestamp = {
+      //   ...dataWithTimestamp,
+      //   ownerHistory: ownerList,
+      // };
+      if ("ownerName" in dataWithTimestamp) {
+        delete dataWithTimestamp.ownerName;
       }
-      dataWithTimestamp = {
-        ...dataWithTimestamp,
-        ownerHistory: ownerList,
-      };
+      console.log("dataWithTimestamp", dataWithTimestamp);
       const payload = JSON.stringify(dataWithTimestamp);
       console.log("payload", payload);
       try {
         sendRequest(UPDATE_CAR(metadata, payload)).then((res) => {
-          //the res has all the updated car information.
           //TODO: add alert to show successly added user and redirect to login page
-          console.log("added successfully ", res);
+          console.log("added successfully Updated", res);
         });
       } catch (error) {
         //TODO: Internal server error toast/alert
