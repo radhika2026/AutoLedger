@@ -37,7 +37,7 @@ const NavbarComponent = ({
           )}
         </Nav>
           {/* GitHub Link with Icon */}
-          <Nav.Link href="https://github.com/your-github-username" target="_blank" rel="noopener noreferrer" style={{ paddingRight: '10px' }}>
+          <Nav.Link href="https://github.com/radhika2026/AutoLedger" target="_blank" rel="noopener noreferrer" style={{ paddingRight: '10px' }}>
   <FontAwesomeIcon icon={faGithub} /> 
 </Nav.Link>
 

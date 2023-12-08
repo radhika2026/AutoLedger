@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
 
 const VehicleHistoryComponent = (historyData) => {
   // const historyData = [
@@ -10,19 +10,24 @@ const VehicleHistoryComponent = (historyData) => {
   //   },
   //   { date: "12/12/2020", event: "Oil changed", location: "Service Station B" },
   // ];
+  console.log("historyData", historyData);
 
   return (
-    <Card className="vehicle-history-card">
+    <Card className="owner-info-card">
       <Card.Body>
-        <Card.Title>Service History</Card.Title>
-        <ul className="list-unstyled">
-          {historyData.map((record, index) => (
-            <li key={index}>
-              <strong>{record.date}</strong>: {record.event} at{" "}
-              {record.location}
-            </li>
-          ))}
-        </ul>
+        <Card.Title>Servicing History</Card.Title>
+        <Table striped bordered hover>
+          <thead></thead>
+          <tbody>
+            {historyData.historyData.map((record, index) => (
+              <tr key={index}>
+                <td>{record.serviceDescription}</td>
+                <td>{record.serviceDate}</td>
+                <td>{record.serviceCenter}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </Card.Body>
     </Card>
   );

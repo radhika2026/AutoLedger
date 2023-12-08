@@ -13,7 +13,7 @@ function VehicleInfo() {
   const userRole = Cookies.get('userRole');
   const location = useLocation();
   const carDetails = location.state?.carDetails;
-  console.log("carDetails", carDetails);
+  console.log("carDetails in VehicleInforPage", carDetails);
   return (
     <div className="VehicleInfo-container">
       <VehicleInfoComponent vehicleInfo={carDetails} />
@@ -21,10 +21,9 @@ function VehicleInfo() {
       {(userRole === "vehicle owner" || userRole === "DMV") && (
         <OwnerInfoComponent ownerData={carDetails.ownerHistory || []} />
       )}
-      {userRole === "vehicle owner" ||
-        (userRole === "insurance" && (
+      {(userRole === "vehicle owner" || userRole === "insurance" || userRole === "DMV") && (
           <InsuranceInfoComponent insuranceData={carDetails.insuranceHistory || []} />
-        ))}
+        )}
       <VehicleHistoryComponent historyData={carDetails.servicingHistory|| []} />
       <VehicleSpecsComponent specsData={carDetails} />
     </div>

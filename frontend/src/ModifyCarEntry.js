@@ -10,6 +10,7 @@ const ModifyCarEntry = ({
   searchedData,
   handleSearchDataChange,
 }) => {
+  
   return (
     <>
       <h4 className="mt-3">Modify Car Details</h4>
@@ -23,13 +24,6 @@ const ModifyCarEntry = ({
             value={searchedData}
             onChange={handleSearchDataChange}
           />
-          {searchedData.length < 8 || searchedData.length > 10 ? (
-            <Form.Text className="text-danger">
-              License plate must be 6 to 8 characters long.
-            </Form.Text>
-          ) : (
-            <></>
-          )}
         </Form.Group>
 
         <Button

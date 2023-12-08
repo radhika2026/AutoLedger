@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, Table } from 'react-bootstrap';
+import React from "react";
+import { Card, Table } from "react-bootstrap";
 
 const InsuranceInfoComponent = (insuranceData) => {
   // Static data for demonstration, replace with actual data fetching logic
@@ -9,19 +9,21 @@ const InsuranceInfoComponent = (insuranceData) => {
   //   policy_start_date: '12-01-2022',
   //   policy_end_date: '15-08-2022'
   // };
-
+console.log("insuranceData", insuranceData)
   return (
     <Card className="insurance-info-card">
       <Card.Body>
         <Card.Title>Insurance Information</Card.Title>
         <Table striped bordered hover>
           <tbody>
-            {Object.entries(insuranceData).map(([key, value]) => (
-              <tr key={key}>
-                <td>{key.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</td>
-                <td>{value}</td>
-              </tr>
-            ))}
+            {insuranceData.insuranceData.length > 0 &&
+              insuranceData.insuranceData.map((insurance, index) => (
+                <tr key={index}>
+                  <td>{insurance.cost}</td>
+                  <td>{insurance.description}</td>
+                  <td>{insurance.date}</td>
+                </tr>
+              ))}
           </tbody>
         </Table>
       </Card.Body>

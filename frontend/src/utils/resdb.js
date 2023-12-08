@@ -47,7 +47,7 @@ export const FETCH_PRODUCT = (product) => `query {
 export const FETCH_USER = (email, password) => `query { 
   getUserTransaction(user: {
     userEmail: "${email}",
-    userPwd: "${password}
+    userPwd: "${password}"
   }) 
   { userName userRole idNo email password drivingLicense } }
 

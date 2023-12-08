@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Footer from './Footer';
-import logo from './A.png';
-import Button from 'react-bootstrap/Button';
+import { Button, Image } from 'react-bootstrap';
+import logo from  "./A.png"
 import './HomePage.css';
 import SignInModal from './SignInModal'; // Import SignInModal
 import RegistrationModal from './RegistrationModal'; // Import RegistrationModal

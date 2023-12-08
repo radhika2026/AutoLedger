@@ -177,7 +177,7 @@ const CreateCarEntry = ({ carData, handleCarDataChange, handleSubmit }) => {
         <Form.Label>Fuel:</Form.Label>
         <FormControl
           as="select"
-          name="fuel"
+          name="fuelType"
           value={carData.fuelType}
           onChange={handleCarDataChange}
         >
@@ -193,8 +193,8 @@ const CreateCarEntry = ({ carData, handleCarDataChange, handleSubmit }) => {
         <Form.Label>Class:</Form.Label>
         <Form.Control
           type="text"
-          name="class"
-          value={carData.class}
+          name="carClass"
+          value={carData.carClass}
           onChange={handleCarDataChange}
         />
       </Form.Group>
