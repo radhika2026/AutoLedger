@@ -7,14 +7,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import Cookies from 'js-cookie';
 
-const isLoggedIn = Cookies.get('isLoggedIn');
-
 const NavbarComponent = ({
   userRole,
   onRegisterClick,
   onSignInClick,
   onUserProfileClick,
 }) => {
+
+  // const isLoggedIn = Cookies.get('isLoggedIn');
+
+  //New Part
+
+  const [isLoggedIn, setIsLoggedIn] = useState(Cookies.get('isLoggedIn') === 'true');
+
+  useEffect(() => {
+    const handleCookieChange = () => {
+      setIsLoggedIn(Cookies.get('isLoggedIn') === 'true');
+    };
+
+    window.addEventListener('cookiechange', handleCookieChange);
+    return () => window.removeEventListener('cookiechange', handleCookieChange);
+  }, []);
+
+  //End New Part
+  
   return (
     <Navbar variant="dark tabs" expand="lg" className="shadow-5-strong navbar-custom">
       <Navbar.Brand href="/home"> <img src={process.env.PUBLIC_URL + 'A.png'} alt="GitHub Icon" style={{ marginLeft: '5px', height: '40px' }} />AutoLedger </Navbar.Brand>
@@ -24,7 +40,7 @@ const NavbarComponent = ({
           <Nav.Link href="/home">
             Home
           </Nav.Link>
-          <Nav.Link href="/vehicleinfopage">Vehicle Information</Nav.Link>
+          {/* <Nav.Link href="/vehicleinfopage">Vehicle Information</Nav.Link> */}
           <Nav.Link href="/search">Search</Nav.Link>
           {/* Conditional Links based on userRole */}
           {userRole === "DMV" && <Nav.Link href="/dmv">DMV Services</Nav.Link>}
