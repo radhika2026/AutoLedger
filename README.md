@@ -21,7 +21,7 @@
 
 8. **Error Notification Implementation:** Implemented toast notifications for error reporting and API responses, improving user experience with real-time feedback.
 
-9. **Rewrote the Insurance and ServiceCenterPage:** The page was initially built by other members of the team but had major issues, including unnecessary fields and the absence of useState to store the values.
+9. **Rewrote the Insurance:** The page was initially built by other members of the team but had major issues, including unnecessary fields and the absence of useState to store the values.
 
 ## Siva(Major Contributor for Backend Development)
 

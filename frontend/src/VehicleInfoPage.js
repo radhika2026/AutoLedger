@@ -20,10 +20,9 @@ function VehicleInfo() {
       {(userRole === "vehicle owner" || userRole === "DMV") && (
         <OwnerInfoComponent ownerData={carDetails.ownerHistory || []} />
       )}
-      {userRole === "vehicle owner" ||
-        (userRole === "insurance" && (
+      {(userRole === "vehicle owner" || userRole === "insurance" || userRole === "DMV") && (
           <InsuranceInfoComponent insuranceData={carDetails.insuranceHistory || []} />
-        ))}
+        )}
       <VehicleHistoryComponent historyData={carDetails.servicingHistory|| []} />
       <VehicleSpecsComponent specsData={carDetails} />
     </div>
