@@ -15,7 +15,7 @@ const VehicleHistoryComponent = (historyData) => {
   return (
     <Card className="owner-info-card">
       <Card.Body>
-        <Card.Title>Owner Information</Card.Title>
+        <Card.Title>Servicing History</Card.Title>
         <Table striped bordered hover>
           <thead></thead>
           <tbody>

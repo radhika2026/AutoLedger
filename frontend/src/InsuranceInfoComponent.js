@@ -9,7 +9,7 @@ const InsuranceInfoComponent = (insuranceData) => {
   //   policy_start_date: '12-01-2022',
   //   policy_end_date: '15-08-2022'
   // };
-
+console.log("insuranceData", insuranceData)
   return (
     <Card className="insurance-info-card">
       <Card.Body>
