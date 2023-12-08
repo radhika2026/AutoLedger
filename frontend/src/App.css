@@ -500,3 +500,22 @@ h4{
   background-color: #97FFF4; /* Blue background on hover */
   color: #111; /* White text on hover */
 }
+
+.b-bordered-button {
+  background-color: #97FFF4; /* Black background */
+  color: #111; /* Blue text */
+  border: 2px solid #111; /* Blue border */
+  padding: 10px 20px; /* Padding around the text */
+  text-align: center; /* Center the text inside the button */
+  text-decoration: none; /* No underline for text */
+  display: inline-block; /* Align it as inline-block */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+  border-radius: 5px; /* Rounded corners */
+  transition: all 0.3s; /* Transition for hover effect */
+}
+
+.b-bordered-button:hover {
+  background-color: #111; /* Blue background on hover */
+  color: #97FFF4; /* White text on hover */
+}

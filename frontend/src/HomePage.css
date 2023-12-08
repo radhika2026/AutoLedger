@@ -20,16 +20,14 @@
   margin-bottom: 40px;
 }
 
-.cta-buttons .btn-primary {
+ .cta-buttons .btn-primary {
   margin-right: 10px;
-  background-color: #00D1B2; /* Primary button color */
-  border: none;
 }
-
+/*
 .cta-buttons .btn-outline-light {
-  color: white; /* Text color */
-  border-color: white; /* Border color */
-}
+  color: white; /* Text color 
+  border-color: white; /* Border color 
+} */
 
 /* Ensure the footer sticks to the bottom */
 .footer {
