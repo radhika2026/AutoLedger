@@ -70,5 +70,5 @@
 
 2. Contributed significantly to the design of API schemas catering to diverse user roles, ensuring seamless integration of functionalities.
 
-**Special credits to Aakash for the blog website.**
+## Special credits to Aakash for the blog website.
 
