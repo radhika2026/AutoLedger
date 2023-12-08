@@ -5,7 +5,6 @@ import { FETCH_CAR, UPDATE_CAR } from "./utils/resdb";
 import { sendRequest } from "./utils/resdbApi";
 
 const InsuranceDropdown = () => {
-
   const [formData, setFormData] = useState({
     cost: "",
     date: "",
@@ -36,7 +35,7 @@ const InsuranceDropdown = () => {
           res.data.getCarTransaction.insuranceHistory = insuranceHistory;
           var payload = res.data.getCarTransaction;
           const timestamp = Date.now();
-          payload.timestamp = timestamp
+          payload.timestamp = timestamp;
           payload = JSON.stringify(payload);
           try {
             sendRequest(UPDATE_CAR(payload)).then((response) => {
@@ -53,7 +52,6 @@ const InsuranceDropdown = () => {
     //CRITICAL: ADD Update Car API
   };
 
-
   return (
     <div className="Service-form-container">
       <form onSubmit={handleSubmit}>
@@ -63,8 +61,6 @@ const InsuranceDropdown = () => {
           <input
             type="text"
             name="numberPlate"
-            pattern="[A-Za-z0-9]{6,8}"
-            title="6 to 8 alphanumeric characters"
             value={formData.numberPlate}
             onChange={handleChange}
             required
