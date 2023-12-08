@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { sendRequest } from "./utils/resdbApi";
 import { FETCH_CAR, UPDATE_CAR } from "./utils/resdb";
 
+const metadata = {
+  signerPublicKey: "HvNRQznqrRdCwSKn6R8ZoQE4U3aobQShajK1NShQhGRn",
+  signerPrivateKey: "2QdMTdaNj8mJjduXFAsHieVmcsBcqeWQyW9v891kZEXC",
+  recipientPublicKey: "HvNRQznqrRdCwSKn6R8ZoQE4U3aobQShajK1NShQhGRn",
+};
+
 const ServiceCenterForm = () => {
   const [formData, setFormData] = useState({
     serviceCenter: "",
@@ -10,30 +16,22 @@ const ServiceCenterForm = () => {
     odometerReading: "",
   });
 
-  // "servicingHistory": [
-  //   {
-  //     "serviceCenter": "AutoCare Service Center",
-  //     "serviceDate": "01-09-2022",
-  //     "serviceDescription": "Oil change, filter replacement"
-  //   }
-  // ]
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    var payload = {
-      asset_type: "car",
-      numberPlate: formData.numberPlate,
-    };
+    var numberPlate = formData.numberPlate;
     try {
       var newServiceObject = {};
       newServiceObject["serviceCenter"] = formData.serviceCenter;
       newServiceObject["serviceDate"] = formData.serviceDate;
       newServiceObject["serviceDescription"] = formData.serviceDescription;
-      sendRequest(FETCH_CAR(payload.numberPlate)).then((res) => {
+      sendRequest(FETCH_CAR(umberPlate)).then((res) => {
         if (res != {}) {
+          console.log("fetch res", res)
           // if (res.data.getCarTransaction.servicingHistory) {
           var servicingHistory = res.data.getCarTransaction.servicingHistory;
           servicingHistory.push(newServiceObject);
@@ -42,10 +40,12 @@ const ServiceCenterForm = () => {
           var payload = res.data.getCarTransaction;
           const timestamp = Date.now();
           payload.timestamp = timestamp;
+          payload.asset_type = "car";
           payload = JSON.stringify(payload);
           try {
-            sendRequest(UPDATE_CAR(payload)).then((response) => {
-              console.log("updated successfully");
+            sendRequest(UPDATE_CAR(metadata, 
+              payload)).then((response) => {
+              console.log("updated successfully", response);
             });
           } catch (error) {
             console.log("error");
