@@ -18,18 +18,18 @@ const InsuranceDropdown = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    var payload = {
-      asset_type: "car",
-      numberPlate: formData.numberPlate,
-    };
+   
+    let numberPlate =  formData.numberPlate;
+
     try {
       var newInsuranceObject = {};
       newInsuranceObject["date"] = formData.date;
       newInsuranceObject["cost"] = formData.cost;
       newInsuranceObject["description"] = formData.description;
-      sendRequest(FETCH_CAR(payload.numberPlate)).then((res) => {
+      sendRequest(FETCH_CAR(numberPlate)).then((res) => {
         if (res != {}) {
           // if (res.data.getCarTransaction.servicingHistory) {
+          console.log("response form fetch", res);
           var insuranceHistory = res.data.getCarTransaction.insuranceHistory;
           insuranceHistory.push(newInsuranceObject);
           res.data.getCarTransaction.insuranceHistory = insuranceHistory;
@@ -37,6 +37,7 @@ const InsuranceDropdown = () => {
           const timestamp = Date.now();
           payload.timestamp = timestamp;
           payload = JSON.stringify(payload);
+          console.log("payload for update", payload);
           try {
             sendRequest(UPDATE_CAR(payload)).then((response) => {
               console.log("updated successfully");
