@@ -47,7 +47,7 @@ export const FETCH_PRODUCT = (product) => `query {
 export const FETCH_USER = (email, password) => `query { 
   getUserTransaction(user: {
     userEmail: "${email}",
-    userPwd: "${password}"
+    userPwd: "${password}
   }) 
   { userName userRole idNo email password drivingLicense } }
 
@@ -99,5 +99,32 @@ export const UPDATE_CAR = (metadata, car) => `mutation {
     }
     """
     })
-
+    { chassisNo
+      engineNo 
+      manufacturer
+     manufacturingDate 
+     numberPlate 
+     registerDate 
+     ownerHistory { 
+             ownerName 
+             ownershipStartDate 
+             ownershipEndDate 
+     } 
+     drivingLicense 
+     color 
+     seating 
+     transmission 
+     wheelBase 
+     groundClearance 
+     driveType 
+     fuelType 
+     carClass 
+     model 
+     insuranceNo 
+     insuranceProvider 
+     policyEndDate 
+     insuranceHistory 
+     { date cost description } 
+     mileage odometerReading 
+     servicingHistory { serviceCenter serviceDate serviceDescription } }
 }`;
