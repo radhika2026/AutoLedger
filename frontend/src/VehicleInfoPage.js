@@ -18,7 +18,7 @@ function VehicleInfo() {
     <div className="VehicleInfo-container">
       <VehicleInfoComponent vehicleInfo={carDetails} />
       {console.log(userRole)}
-      {(userRole === "vehicle owner" || userRole === "DMV") && (
+      {(
         <OwnerInfoComponent ownerData={carDetails.ownerHistory || []} />
       )}
       {(userRole === "vehicle owner" || userRole === "insurance" || userRole === "DMV") && (
