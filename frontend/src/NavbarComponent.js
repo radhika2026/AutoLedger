@@ -1,10 +1,13 @@
-import { isUserLoggedIn } from './utils'
+
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // make sure bootstrap CSS is imported
 import './NavbarComponent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import Cookies from 'js-cookie';
+
+const isLoggedIn = Cookies.get('isUserLoggedIn');
 
 const NavbarComponent = ({
   userRole,

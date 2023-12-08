@@ -52,6 +52,7 @@ function App() {
     <Router>
       <NavbarComponent
         onRegisterClick={toggleRegistrationModal}
+        userRole = {Cookies.get('userRole')}
         onSignInClick={() => setSignInModalOpen(true)}
         onUserProfileClick={toggleUserProfileModal}
         onDMVClick={() => setDMVModalOpen(true)}
