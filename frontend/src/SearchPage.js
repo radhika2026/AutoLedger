@@ -8,7 +8,6 @@ import Cookies from 'js-cookie';
 const isLoggedIn = Cookies.get('isLoggedIn');
 
 function SearchPage() {
-  if(isLoggedIn === true){
     return (
       <div className="HomeComponent-background">
         <div className="centered-form">
@@ -21,11 +20,6 @@ function SearchPage() {
       </div>
   
     );
-  }else{
-    <>
-    <h1>Permission Denied</h1>
-    </>
-  }
 }
 
 export default SearchPage;
