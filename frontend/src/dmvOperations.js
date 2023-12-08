@@ -90,6 +90,7 @@ const DMV = () => {
     var ownerMap = {};
     ownerMap.ownerName = carData.ownerName;
     ownerMap.ownershipStartDate = formattedDate;
+    ownerMap.ownershipEndDate = "";
 
     if (operation === "CreateCarEntry") {
       var ownerList = [];
@@ -120,6 +121,7 @@ const DMV = () => {
         ownerHistory: ownerList,
       };
       const payload = JSON.stringify(dataWithTimestamp);
+      console.log("payload", payload);
       try {
         sendRequest(UPDATE_CAR(metadata, payload)).then((res) => {
           //the res has all the updated car information.
