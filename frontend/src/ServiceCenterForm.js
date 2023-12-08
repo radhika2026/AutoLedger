@@ -41,8 +41,8 @@ const ServiceCenterForm = () => {
           res.data.getCarTransaction.odometerReading = formData.odometerReading;
           var payload = res.data.getCarTransaction;
           const timestamp = Date.now();
-          payload.timestamp = timestamp,
-          payload = JSON.stringify(payload)
+          payload.timestamp = timestamp;
+          payload = JSON.stringify(payload);
           try {
             sendRequest(UPDATE_CAR(payload)).then((response) => {
               console.log("updated successfully");

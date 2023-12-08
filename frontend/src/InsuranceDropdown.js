@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Card, Form, Button, Modal, FormControl } from "react-bootstrap";
 import { Input } from "reactstrap";
+import { FETCH_CAR, UPDATE_CAR } from "./utils/resdb";
+import { sendRequest } from "./utils/resdbApi";
 
 const InsuranceDropdown = () => {
 
@@ -23,9 +25,9 @@ const InsuranceDropdown = () => {
     };
     try {
       var newInsuranceObject = {};
-      newServiceObject["date"] = formData.date;
-      newServiceObject["cost"] = formData.cost;
-      newServiceObject["description"] = formData.description;
+      newInsuranceObject["date"] = formData.date;
+      newInsuranceObject["cost"] = formData.cost;
+      newInsuranceObject["description"] = formData.description;
       sendRequest(FETCH_CAR(payload.numberPlate)).then((res) => {
         if (res != {}) {
           // if (res.data.getCarTransaction.servicingHistory) {
@@ -34,8 +36,8 @@ const InsuranceDropdown = () => {
           res.data.getCarTransaction.insuranceHistory = insuranceHistory;
           var payload = res.data.getCarTransaction;
           const timestamp = Date.now();
-          payload.timestamp = timestamp,
-          payload = JSON.stringify(payload)
+          payload.timestamp = timestamp
+          payload = JSON.stringify(payload);
           try {
             sendRequest(UPDATE_CAR(payload)).then((response) => {
               console.log("updated successfully");
