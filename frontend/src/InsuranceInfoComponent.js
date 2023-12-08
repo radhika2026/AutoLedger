@@ -16,7 +16,7 @@ console.log("insuranceData", insuranceData)
         <Card.Title>Insurance Information</Card.Title>
         <Table striped bordered hover>
           <tbody>
-            {insuranceData.lenght > 0 &&
+            {insuranceData.length > 0 &&
               insuranceData.map((insurance, index) => (
                 <tr key={index}>
                   <td>{insurance.cost}</td>
