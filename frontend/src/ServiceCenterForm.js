@@ -29,7 +29,7 @@ const ServiceCenterForm = () => {
       newServiceObject["serviceCenter"] = formData.serviceCenter;
       newServiceObject["serviceDate"] = formData.serviceDate;
       newServiceObject["serviceDescription"] = formData.serviceDescription;
-      sendRequest(FETCH_CAR(umberPlate)).then((res) => {
+      sendRequest(FETCH_CAR(numberPlate)).then((res) => {
         if (res != {}) {
           console.log("fetch res", res)
           // if (res.data.getCarTransaction.servicingHistory) {
