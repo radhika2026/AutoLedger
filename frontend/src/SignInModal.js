@@ -48,6 +48,12 @@ const SignInModal = ({ isOpen, toggle }) => {
           Cookies.set('idNo', res.idNo)
           Cookies.set('email', res.email)
           Cookies.set('drivingLicense', res.drivingLicense)
+          console.log('Log In: ', Cookies.get('isLoggedIn'), 
+          'Role:', Cookies.get('userRole'), 
+          'ID: ', Cookies.get('idNo'), 
+          'Email:', Cookies.get('email'), 
+          'Driving License', Cookies.get('drivingLicense'))
+          
           toggle(); // Close the modal
           navigate("/search");
 

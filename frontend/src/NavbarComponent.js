@@ -43,9 +43,9 @@ const NavbarComponent = ({
 
         {/* Right-aligned links, replace these with your actual login/register/profile links */}
         <Nav>
-          <Nav.Link onClick={onRegisterClick}>Register</Nav.Link>
-          <Nav.Link onClick={onSignInClick}>Sign In</Nav.Link>
-          <Nav.Link onClick={onUserProfileClick}>Profile</Nav.Link>
+          {!isLoggedIn && <Nav.Link onClick={onRegisterClick}>Register</Nav.Link>}
+          {!isLoggedIn && <Nav.Link onClick={onSignInClick}>Sign In</Nav.Link>}
+          {isLoggedIn && <Nav.Link onClick={onUserProfileClick}>Profile</Nav.Link>}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
