@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import SearchComponent from './SearchComponent'; // Import Search component
+import Cookies from 'js-cookie';
 
 const isLoggedIn = Cookies.get('isLoggedIn');
 
