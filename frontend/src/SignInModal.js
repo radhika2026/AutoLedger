@@ -47,7 +47,7 @@ const SignInModal = ({ isOpen, toggle }) => {
           Cookies.set('userRole', res.data.getUserTransaction.userRole)
           Cookies.set('idNo', res.data.getUserTransaction.idNo)
           Cookies.set('email', res.data.getUserTransaction.email)
-          Cookies.set('drivingLicense', res.drivingLicense)
+          Cookies.set('drivingLicense', res.data.getUserTransaction.drivingLicense)
 
           console.log('Log In: ', Cookies.get('isLoggedIn'), 
           'Role:', Cookies.get('userRole'), 
