@@ -16,7 +16,6 @@ const ServiceCenterForm = () => {
     odometerReading: "",
   });
 
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -31,7 +30,7 @@ const ServiceCenterForm = () => {
       newServiceObject["serviceDescription"] = formData.serviceDescription;
       sendRequest(FETCH_CAR(numberPlate)).then((res) => {
         if (res != {}) {
-          console.log("fetch res", res)
+          console.log("fetch res", res);
           // if (res.data.getCarTransaction.servicingHistory) {
           var servicingHistory = res.data.getCarTransaction.servicingHistory;
           servicingHistory.push(newServiceObject);
@@ -43,8 +42,7 @@ const ServiceCenterForm = () => {
           payload.asset_type = "car";
           payload = JSON.stringify(payload);
           try {
-            sendRequest(UPDATE_CAR(metadata, 
-              payload)).then((response) => {
+            sendRequest(UPDATE_CAR(metadata, payload)).then((response) => {
               console.log("updated successfully", response);
             });
           } catch (error) {
@@ -67,8 +65,6 @@ const ServiceCenterForm = () => {
           <input
             type="text"
             name="numberPlate"
-            pattern="[A-Za-z0-9]{6,8}"
-            title="6 to 8 alphanumeric characters"
             value={formData.numberPlate}
             onChange={handleChange}
             required
