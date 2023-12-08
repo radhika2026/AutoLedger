@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import Cookies from 'js-cookie';
 
-const isLoggedIn = Cookies.get('isUserLoggedIn');
+const isLoggedIn = Cookies.get('isLoggedIn');
 
 const NavbarComponent = ({
   userRole,
