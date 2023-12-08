@@ -11,8 +11,8 @@ import InsuranceInfoComponent from "./InsuranceInfoComponent.js";
 function VehicleInfo({ userRole }) {
   var userRole = "DMV";
   const location = useLocation();
-  const carDetails = location.state?.carDetails;
-  console.log("carDetails", carDetails);
+  const carDetails = location.state?.carDetails.data.getCarTransaction;
+  console.log("carDetails in VehicleInforPage", carDetails);
   return (
     <div className="VehicleInfo-container">
       <VehicleInfoComponent vehicleInfo={carDetails} />

@@ -14,7 +14,7 @@ const VehicleInfoComponent = (vehicleInfo) => {
   return (
     <Card className="vehicle-info-card">
       <Card.Body>
-        <Card.Title>{`${vehicleInfo.year} ${vehicleInfo.make} ${vehicleInfo.model} ${vehicleInfo.reportTitle}`}</Card.Title>
+        <Card.Title>{`${vehicleInfo.vehicleInfo.manufacturingDate} ${vehicleInfo.vehicleInfo.model} ${vehicleInfo.vehicleInfo.carClass}`}</Card.Title>
       </Card.Body>
     </Card>
   );
