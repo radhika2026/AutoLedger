@@ -10,6 +10,7 @@ const ModifyCarEntry = ({
   searchedData,
   handleSearchDataChange,
 }) => {
+  
   return (
     <>
       <h4 className="mt-3">Modify Car Details</h4>
