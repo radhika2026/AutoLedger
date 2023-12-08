@@ -8,7 +8,7 @@ import VehicleSpecsComponent from "./VehicleSpecsComponent";
 import OwnerInfoComponent from "./OwnerDetailsComponent.js";
 import InsuranceInfoComponent from "./InsuranceInfoComponent.js";
 
-function VehicleInfo({ userRole }) {
+function VehicleInfo() {
   var userRole = "DMV";
   const location = useLocation();
   const carDetails = location.state?.carDetails.data.getCarTransaction;
