@@ -1,36 +1,30 @@
 /* DMV Form Card Styles */
 
-/* .dmv-form-container {
+.dmv-form-container {
   display: flex;
-  justify-content: center; /* Center horizontally 
-  align-items: center; /* Center vertically 
-  height: 100vh; /* Full viewport height 
-  padding: 20px; /* Add some padding around 
-} */
-
-/* .dmv-form-card {
-  width: 100%; /* Make card responsive 
-  max-width: 50rem; /* Maximum width of the card 
-  margin: auto; /* This will center the card if it's inside a flex container 
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: white;
-} */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */ 
+  height: 100vh; /* Full viewport height */
+  padding: 20px; /* Add some padding around */ 
+} 
 
 .dmv-form-card {
-  width: 50rem; /* Adjust width as needed */
-  margin-top: 20px;
-  margin-bottom: 20px;
+  width: 100%; /* Make card responsive */
+  max-width: 50rem; /* Maximum width of the card */
+  margin: auto; /* This will center the card if it's inside a flex container */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: white;
 }
 
+
+
+
+
 .dmv-form-card .card-title {
   text-align: center;
-  color: #333;
+  color: white;
   margin-bottom: 30px;
   font-size: 24px;
   font-weight: bold;

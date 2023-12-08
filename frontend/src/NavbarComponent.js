@@ -13,7 +13,7 @@ const NavbarComponent = ({
   onUserProfileClick,
 }) => {
   return (
-    <Navbar variant="dark" expand="lg" className="shadow-5-strong">
+    <Navbar variant="dark tabs" expand="lg" className="shadow-5-strong navbar-custom">
       <Navbar.Brand href="/home"> <img src={process.env.PUBLIC_URL + 'A.png'} alt="GitHub Icon" style={{ marginLeft: '5px', height: '40px' }} />AutoLedger </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -22,7 +22,7 @@ const NavbarComponent = ({
             Home
           </Nav.Link>
           <Nav.Link href="/vehicleinfopage">Vehicle Information</Nav.Link>
-
+          <Nav.Link href="/search">Search</Nav.Link>
           {/* Conditional Links based on userRole */}
           {userRole === "DMV" && <Nav.Link href="/dmv">DMV Services</Nav.Link>}
           {userRole === "insurance" && (

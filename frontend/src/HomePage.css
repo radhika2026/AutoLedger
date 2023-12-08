@@ -1,0 +1,41 @@
+.hero-section {
+   /* Deep blue background */
+  color: white;
+  min-height: 100vh; /* Full height of the viewport */
+  padding: 50px 20px; /* Padding for smaller devices */
+}
+
+.logo {
+  max-width: 200px; /* Adjust the logo size accordingly */
+  margin-bottom: 30px; /* Space below the logo */
+}
+
+.hero-section h1 {
+  font-size: 2.5rem; /* Adjust the size as needed */
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 1.2rem; /* Smaller font size for the subtitle */
+  margin-bottom: 40px;
+}
+
+.cta-buttons .btn-primary {
+  margin-right: 10px;
+  background-color: #00D1B2; /* Primary button color */
+  border: none;
+}
+
+.cta-buttons .btn-outline-light {
+  color: white; /* Text color */
+  border-color: white; /* Border color */
+}
+
+/* Ensure the footer sticks to the bottom */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /* Add the rest of your footer styles here */
+}

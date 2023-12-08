@@ -8,7 +8,7 @@ const ModifyCarEntry = ({
   handleFetch,
   isDataLoaded,
   searchedData,
-  handleSearchDataChange
+  handleSearchDataChange,
 }) => {
   return (
     <>
@@ -23,8 +23,7 @@ const ModifyCarEntry = ({
             value={searchedData}
             onChange={handleSearchDataChange}
           />
-          {searchedData.length < 6 ||
-          searchedData.length > 8 ? (
+          {searchedData.length < 8 || searchedData.length > 10 ? (
             <Form.Text className="text-danger">
               License plate must be 6 to 8 characters long.
             </Form.Text>
@@ -33,7 +32,11 @@ const ModifyCarEntry = ({
           )}
         </Form.Group>
 
-        <Button variant="primary" onClick={handleFetch}>
+        <Button
+          variant="primary"
+          className="blue-bordered-button"
+          onClick={handleFetch}
+        >
           Fetch
         </Button>
       </>
@@ -56,7 +59,12 @@ const ModifyCarEntry = ({
             <Input
               type="text"
               name="ownerName"
-              value={carData.ownerName}
+              value={
+                carData.ownerHistory && carData.ownerHistory.length > 0
+                  ? carData.ownerHistory[carData.ownerHistory.length - 1]
+                      .ownerName
+                  : ""
+              }
               onChange={handleCarDataChange}
             />
           </Form.Group>
@@ -229,7 +237,7 @@ const ModifyCarEntry = ({
             <Form.Control
               type="text"
               name="class"
-              value={carData.class}
+              value={carData.carClass}
               onChange={handleCarDataChange}
             />
           </Form.Group>

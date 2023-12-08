@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { sendRequest } from "./utils/resdbApi";
-import { GENERATE_KEYS, POST_TRANSACTION } from "./utils/resdb";
+import { POST_TRANSACTION } from "./utils/resdb";
+import { useNavigate } from "react-router-dom";
+import ToastComponent from "./ToastComponent";
 
-//TODO: remove encrypted keys
 const metadata = {
   signerPublicKey: "HvNRQznqrRdCwSKn6R8ZoQE4U3aobQShajK1NShQhGRn",
   signerPrivateKey: "2QdMTdaNj8mJjduXFAsHieVmcsBcqeWQyW9v891kZEXC",
@@ -13,28 +14,25 @@ const metadata = {
 const RegistrationModal = ({ isOpen, toggle }) => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    name: "",
-    dlNumber: "",
+    userName: "",
+    userRole: "",
+    idNo: "",
     email: "",
     password: "",
-    role: "",
-    additionalId: "",
+    drivingLicense: "",
   });
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const validateStepOne = () => {
     let errors = {};
     let isValid = true;
 
-    if (!formData.name) {
+    if (!formData.userName) {
       isValid = false;
-      errors.name = "Name is required";
-    }
-
-    const dlRegex = /^[a-zA-Z0-9]{8,10}$/;
-    if (!dlRegex.test(formData.dlNumber)) {
-      isValid = false;
-      errors.dlNumber = "DL number must be 8-10 alphanumeric characters";
+      errors.userName = "Name is required";
     }
 
     if (!formData.email.includes("@")) {
@@ -75,22 +73,19 @@ const RegistrationModal = ({ isOpen, toggle }) => {
     const dataWithTimestamp = {
       ...formData,
       timestamp: timestamp,
-      asset_type: "user"
+      asset_type: "user",
     };
     const payload = JSON.stringify(dataWithTimestamp);
     console.log(payload);
-    try{
-      sendRequest(
-        POST_TRANSACTION(metadata, payload)
-      ).then((res) => {
-        //TODO: add alert to show successly added user and redirect to login page
+    try {
+      sendRequest(POST_TRANSACTION(metadata, payload)).then((res) => {
+        navigate("/home");
         console.log("added successfully ", res);
       });
+    } catch (error) {
+      setToastMessage("Error! Check Entries!");
+      setShowToast(true);
     }
-    catch(error){
-      //TODO: Internal server error toast/alert
-    }
-
   };
 
   const renderStepContent = (step) => {
@@ -99,27 +94,16 @@ const RegistrationModal = ({ isOpen, toggle }) => {
         return (
           <Form>
             <FormGroup>
-              <Label for="name">Name</Label>
+              <Label for="userName">Name</Label>
               <Input
                 type="text"
-                name="name"
-                id="name"
-                value={formData.name}
+                name="userName"
+                id="userName"
+                value={formData.userName}
                 onChange={handleInputChange}
               />
-              {errors.name && <div className="error">{errors.name}</div>}
-            </FormGroup>
-            <FormGroup>
-              <Label for="dlNumber">DL Number</Label>
-              <Input
-                type="text"
-                name="dlNumber"
-                id="dlNumber"
-                value={formData.dlNumber}
-                onChange={handleInputChange}
-              />
-              {errors.dlNumber && (
-                <div className="error">{errors.dlNumber}</div>
+              {errors.userName && (
+                <div className="error">{errors.userName}</div>
               )}
             </FormGroup>
             <FormGroup>
@@ -146,18 +130,28 @@ const RegistrationModal = ({ isOpen, toggle }) => {
                 <div className="error">{errors.password}</div>
               )}
             </FormGroup>
+            <FormGroup>
+              <Label for="drivingLicense">Driving License</Label>
+              <Input
+                type="text"
+                name="drivingLicense"
+                id="drivingLicense"
+                value={formData.drivingLicense}
+                onChange={handleInputChange}
+              />
+            </FormGroup>
           </Form>
         );
       case 2:
         return (
           <Form>
             <FormGroup>
-              <Label for="role">Role</Label>
+              <Label for="userRole">Role</Label>
               <Input
                 type="select"
-                name="role"
-                id="role"
-                value={formData.role}
+                name="userRole"
+                id="userRole"
+                value={formData.userRole}
                 onChange={handleInputChange}
               >
                 <option value="">Select Role</option>
@@ -169,16 +163,17 @@ const RegistrationModal = ({ isOpen, toggle }) => {
                 <option value="Normal User">Normal User</option>
               </Input>
             </FormGroup>
+            {console.log("userName", formData)}
             {["DMV", "Insurance", "Service Center", "Dealership"].includes(
-              formData.role
+              formData.userRole
             ) && (
               <FormGroup>
-                <Label for="additionalId">{`${formData.role} ID`}</Label>
+                <Label for="idNo">{`${formData.userRole} ID`}</Label>
                 <Input
                   type="text"
-                  name="additionalId"
-                  id="additionalId"
-                  value={formData.additionalId}
+                  name="idNo"
+                  id="idNo"
+                  value={formData.idNo}
                   onChange={handleInputChange}
                 />
               </FormGroup>
@@ -191,31 +186,35 @@ const RegistrationModal = ({ isOpen, toggle }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} toggle={toggle}>
-      <div className="modal-header">
-        <h5 className="modal-title">User Registration</h5>
-        <button type="button" className="close" onClick={toggle}>
-          <span>&times;</span>
-        </button>
-      </div>
-      <div className="modal-body">{renderStepContent(step)}</div>
-      <div className="modal-footer">
-        {step > 1 && (
-          <Button color="secondary" onClick={previousStep}>
-            Back
-          </Button>
-        )}
-        {step < 2 ? (
-          <Button color="primary" onClick={nextStep}>
-            Next
-          </Button>
-        ) : (
-          <Button color="success" onClick={handleSubmit}>
-            Submit
-          </Button>
-        )}
-      </div>
-    </Modal>
+    <>
+      <Modal isOpen={isOpen} toggle={toggle}>
+        <div className="modal-header">
+          <h5 className="modal-title">User Registration</h5>
+        </div>
+        <div className="modal-body">{renderStepContent(step)}</div>
+        <div className="modal-footer">
+          {step > 1 && (
+            <Button className="blue-bordered-button" onClick={previousStep}>
+              Back
+            </Button>
+          )}
+          {step < 2 ? (
+            <Button className="blue-bordered-button" onClick={nextStep}>
+              Next
+            </Button>
+          ) : (
+            <Button className="blue-bordered-button" onClick={handleSubmit}>
+              Submit
+            </Button>
+          )}
+        </div>
+      </Modal>
+      <ToastComponent
+        show={showToast}
+        message={toastMessage}
+        onClose={() => setShowToast(false)}
+      />
+    </>
   );
 };
 

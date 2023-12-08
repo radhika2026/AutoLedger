@@ -3,8 +3,8 @@
 }
 
 .footer {
-  background-color: #0F52BA; /* Deep Blue */
-  color: #F8F8F8; /* Off White */
+  background-color: black; /* Deep Blue */
+  color: #97fff4; /* Off White */
   padding: 20px 0;
   text-align: center;
   position: fixed; /* Fix the position */

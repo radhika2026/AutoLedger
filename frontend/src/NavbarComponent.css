@@ -1,4 +1,15 @@
-.nav-link:hover {
+/* .navbar-custom .nav-link:hover {
     color: black;
     background-color: white;
-}
+} */
+
+.navbar-custom .nav-link:hover {
+    color: white; /* Color changes to white on hover */
+    font-size: 120%; /* Increase the font size slightly */
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); /* Text shadow for a pop-out effect */
+  }
+
+.navbar-custom .nav-link {
+    color: #97fff4; 
+  }
+  

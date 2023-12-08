@@ -1,9 +1,9 @@
 import React from "react";
 import { Card, Table } from "react-bootstrap";
 
-const OwnerInfoComponent = ({ ownerdata }) => {
-  console.log("owner", ownerdata);
-  // var ownerData = [
+const OwnerInfoComponent = ({ ownerData }) => {
+  console.log("owner", ownerData);
+  // ownerData = [
   //   {
   //     owner_name: "John Doe",
   //     registration_date: "12-01-2021",
@@ -32,12 +32,12 @@ const OwnerInfoComponent = ({ ownerdata }) => {
             </tr>
           </thead>
           <tbody>
-            {ownerData.map((owner, index) => (
+           {ownerData.lenght > 0 && ownerData.map((owner, index) => (
               <tr key={index}>
-                <td>{owner.owner_name}</td>
-                <td>{owner.registration_date}</td>
-                <td>{owner.DMV_registered}</td>
-                <td>{owner.driving_licence}</td>
+                <td>{owner?.owner_name}</td>
+                <td>{owner?.registration_date}</td>
+                <td>{owner?.DMV_registered}</td>
+                <td>{owner?.driving_licence}</td>
               </tr>
             ))}
           </tbody>
