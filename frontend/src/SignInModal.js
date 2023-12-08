@@ -43,11 +43,12 @@ const SignInModal = ({ isOpen, toggle }) => {
 
         if (Object.keys(res).length !== 0) {
           Cookies.set('isLoggedIn', 'true', { expires: 1 }); // Expires in 1 day
-          Cookies.set('userName', res.userName)
-          Cookies.set('userRole', res.userRole)
-          Cookies.set('idNo', res.idNo)
-          Cookies.set('email', res.email)
+          Cookies.set('userName', res.data.getUserTransaction.userName)
+          Cookies.set('userRole', res.data.getUserTransaction.userRole)
+          Cookies.set('idNo', res.data.getUserTransaction.idNo)
+          Cookies.set('email', res.data.getUserTransaction.email)
           Cookies.set('drivingLicense', res.drivingLicense)
+          console.l
           toggle(); // Close the modal
           navigate("/search");
 
