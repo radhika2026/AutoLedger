@@ -3,6 +3,7 @@ import { Card, Form, Button, Modal, FormControl } from "react-bootstrap";
 import { Input } from "reactstrap";
 import { FETCH_CAR, UPDATE_CAR } from "./utils/resdb";
 import { sendRequest } from "./utils/resdbApi";
+import ToastComponent from "./ToastComponent";
 
 const InsuranceDropdown = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const InsuranceDropdown = () => {
     description: "",
     numberPlate: "",
   });
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,8 +21,8 @@ const InsuranceDropdown = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
-    let numberPlate =  formData.numberPlate;
+
+    let numberPlate = formData.numberPlate;
 
     try {
       var newInsuranceObject = {};
@@ -36,17 +39,24 @@ const InsuranceDropdown = () => {
           var payload = res.data.getCarTransaction;
           const timestamp = Date.now();
           payload.timestamp = timestamp;
+          payload.asset_type = "car";
           payload = JSON.stringify(payload);
           console.log("payload for update", payload);
           try {
             sendRequest(UPDATE_CAR(payload)).then((response) => {
-              console.log("updated successfully");
+              console.log("updated successfully", response);
+              setToastMessage("Updated SUccessfully");
+              setShowToast(true);
             });
           } catch (error) {
             console.log("error");
+            setToastMessage("Error fetching data. Please try again.");
+            setShowToast(true);
           }
         } else {
           //TODO: pop up no car found
+          setToastMessage("Error fetching data. Please try again.");
+          setShowToast(true);
         }
       });
     } catch (error) {}
