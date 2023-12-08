@@ -1,10 +1,11 @@
-import { isUserLoggedIn } from './utils'
+
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // make sure bootstrap CSS is imported
 import './NavbarComponent.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import Cookies from 'js-cookie';
 
 const NavbarComponent = ({
   userRole,
@@ -12,6 +13,9 @@ const NavbarComponent = ({
   onSignInClick,
   onUserProfileClick,
 }) => {
+
+  const isLoggedIn = Cookies.get('isLoggedIn');
+  
   return (
     <Navbar variant="dark tabs" expand="lg" className="shadow-5-strong navbar-custom">
       <Navbar.Brand href="/home"> <img src={process.env.PUBLIC_URL + 'A.png'} alt="GitHub Icon" style={{ marginLeft: '5px', height: '40px' }} />AutoLedger </Navbar.Brand>
@@ -21,7 +25,7 @@ const NavbarComponent = ({
           <Nav.Link href="/home">
             Home
           </Nav.Link>
-          <Nav.Link href="/vehicleinfopage">Vehicle Information</Nav.Link>
+          {/* <Nav.Link href="/vehicleinfopage">Vehicle Information</Nav.Link> */}
           <Nav.Link href="/search">Search</Nav.Link>
           {/* Conditional Links based on userRole */}
           {userRole === "DMV" && <Nav.Link href="/dmv">DMV Services</Nav.Link>}
@@ -43,9 +47,9 @@ const NavbarComponent = ({
 
         {/* Right-aligned links, replace these with your actual login/register/profile links */}
         <Nav>
-          <Nav.Link onClick={onRegisterClick}>Register</Nav.Link>
-          <Nav.Link onClick={onSignInClick}>Sign In</Nav.Link>
-          <Nav.Link onClick={onUserProfileClick}>Profile</Nav.Link>
+          {!isLoggedIn && <Nav.Link onClick={onRegisterClick}>Register</Nav.Link>}
+          {!isLoggedIn && <Nav.Link onClick={onSignInClick}>Sign In</Nav.Link>}
+          {isLoggedIn && <Nav.Link onClick={onUserProfileClick}>Profile</Nav.Link>}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

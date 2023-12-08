@@ -5,8 +5,7 @@ import { Modal, Button } from 'react-bootstrap';
 const UserProfileModal = ({ isOpen, toggle }, ) => {
   const userName =  Cookies.get('userName')
   const userRole =  Cookies.get('userRole')
-  // const idNo =  Cookies.get('idNo')
-  const idNo = ' '
+  const idNo =  Cookies.get('idNo')
   const email = Cookies.get('email')
   const drivingLicense = Cookies.get('drivingLicense')
 

@@ -4,13 +4,14 @@ import { Input } from "reactstrap";
 import { FETCH_CAR, UPDATE_CAR } from "./utils/resdb";
 import { sendRequest } from "./utils/resdbApi";
 import ToastComponent from "./ToastComponent";
+import Cookies from "js-cookie";
 
 const metadata = {
   signerPublicKey: "HvNRQznqrRdCwSKn6R8ZoQE4U3aobQShajK1NShQhGRn",
   signerPrivateKey: "2QdMTdaNj8mJjduXFAsHieVmcsBcqeWQyW9v891kZEXC",
   recipientPublicKey: "HvNRQznqrRdCwSKn6R8ZoQE4U3aobQShajK1NShQhGRn",
 };
-
+const userRole = Cookies.get("userRole");
 const InsuranceDropdown = () => {
   const [formData, setFormData] = useState({
     cost: "",
@@ -68,60 +69,66 @@ const InsuranceDropdown = () => {
     } catch (error) {}
     //CRITICAL: ADD Update Car API
   };
-
-  return (
+  if (userRole === "Insurance"){
+    return (
+      <>
+        <div className="Service-form-container">
+          <form onSubmit={handleSubmit}>
+            <h2>Insurance Form</h2>
+            <div>
+              <label>License Plate</label>
+              <input
+                type="text"
+                name="numberPlate"
+                value={formData.numberPlate}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label>Date of Insurance</label>
+              <input
+                type="date" // Set the type to date
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label>Cost</label>
+              <input
+                type="text"
+                name="cost"
+                value={formData.cost}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Notes</label>
+              <textarea
+                name="description"
+                maxLength="250"
+                value={formData.description}
+                onChange={handleChange}
+              />
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <ToastComponent
+          show={showToast}
+          message={toastMessage}
+          onClose={() => setShowToast(false)}
+        />
+      </>
+    );
+  }else{
     <>
-      <div className="Service-form-container">
-        <form onSubmit={handleSubmit}>
-          <h2>Insurance Form</h2>
-          <div>
-            <label>License Plate</label>
-            <input
-              type="text"
-              name="numberPlate"
-              value={formData.numberPlate}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label>Date of Insurance</label>
-            <input
-              type="date" // Set the type to date
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label>Cost</label>
-            <input
-              type="text"
-              name="cost"
-              value={formData.cost}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Notes</label>
-            <textarea
-              name="description"
-              maxLength="250"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </div>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-      <ToastComponent
-        show={showToast}
-        message={toastMessage}
-        onClose={() => setShowToast(false)}
-      />
+    <h1>Permission Denied</h1>
     </>
-  );
+  }
+ 
 };
 
 export default InsuranceDropdown;
