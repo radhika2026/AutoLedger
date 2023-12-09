@@ -23,13 +23,15 @@
 
 9. **Rewrote the Insurance:** The page was initially built by other members of the team but had major issues, including unnecessary fields and the absence of useState to store the values.
 
-## Siva(Major Contributor for Backend Development)
+## Siva(Extensive Contributor for Backend Development)
 
-1. Installed and configured ResilientDB’s KV server, HTTP Crow server, and GraphQL server (all backend servers) and orchestrated their seamless integration.
+1. **Backend servers configuration** Installed and configured ResilientDB’s KV server, HTTP Crow server, and GraphQL server (all backend servers) as we built our project on our local instance and orchestrated their seamless integration.
    
-2. Led the design and development of backend APIs (POST, GET, UPDATE) for both ‘user’ and ‘car’ assets, rigorously testing them on the local GraphQL server. (Major Contributor)
+2. **GraphQL Queries development** Led the design and development of backend APIs (POST, GET, GETALL, UPDATE) for both ‘user’ and ‘car’ assets, rigorously testing them on the local GraphQL server. (Extensive Contributor)
 
-3. Actively contributed to the frontend-backend integration and associated testing processes.
+3. **Backend API Integration** Ensured that all the necessary API calls that are invoked from the frontend are smoothly integrated into the backend and returns appropriate payload that can be seamlessly utilized by the frontend.
+
+4.**Testing and Debugging** In collaboration with Radhika, actively involved in the testing of all frontend-backend interactions, ensuring correct API calls getting invoked and optimized the backend code accordingly based on errors seen during testing.
 
 ## Arvind(Major Contributor for Frontend Development)
 
