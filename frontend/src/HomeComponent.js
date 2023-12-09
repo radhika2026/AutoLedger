@@ -3,6 +3,7 @@ import Footer from './Footer';
 import { Button, Image } from 'react-bootstrap';
 import logo from  "./A.png"
 import './HomePage.css';
+import './App.css'
 import SignInModal from './SignInModal'; // Import SignInModal
 import RegistrationModal from './RegistrationModal'; // Import RegistrationModal
 
@@ -15,14 +16,14 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="hero-section d-flex justify-content-center align-items-center text-center">
+      <div className="hero-section justify-content-center align-items-center text-center">
         <div className="mx-auto">
           <img src={logo} alt="AutoLedger Logo" className="logo"/>
           <h1>Welcome to AutoLedger</h1>
           <p>Your ultimate vehicle management solution.</p>
           <div className="cta-buttons">
-            <Button variant="primary" onClick={toggleSignInModal}>Log in</Button>
-            <Button variant="outline-light" onClick={toggleRegistrationModal}>Sign up</Button>
+            <Button variant="primary" className='blue-bordered-button' onClick={toggleSignInModal}>Log in</Button>
+            <Button  className='b-bordered-button' onClick={toggleRegistrationModal}>Sign up</Button>
           </div>
         </div>
       </div>

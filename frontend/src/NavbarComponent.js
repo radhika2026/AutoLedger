@@ -29,14 +29,9 @@ const NavbarComponent = ({
           <Nav.Link href="/search">Search</Nav.Link>
           {/* Conditional Links based on userRole */}
           {userRole === "DMV" && <Nav.Link href="/dmv">DMV Services</Nav.Link>}
-          {userRole === "insurance" && (
-            <NavDropdown title="Insurance" id="insurance-dropdown">
-              <NavDropdown.Item href="#action/3.1">Option 1</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Option 2</NavDropdown.Item>
-              {/* Add more dropdown items here */}
-            </NavDropdown>
+          {userRole === "Insurance" && (<Nav.Link href="/InsuranceDropdown">DMV Services</Nav.Link>
           )}
-          {userRole === "service center" && (
+          {userRole === "Service Center" && (
             <Nav.Link href="/ServiceCenterForm">Service Center</Nav.Link>
           )}
         </Nav>
