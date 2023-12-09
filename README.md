@@ -57,11 +57,13 @@
 
 ## Aakash
 
-1. **Frontend Development and Refinement:** Primary focus was on the development and refinement of key pages, particularly the DMV pages within the React framework.
+1. **Research about Existing Systems:** Did extensive research to study features that are there and that are missing in the current existing system. Ultimately, found a platform "vehiclehistory.com", which formed the basis for designing the schema and the features of the AutoLedger.
 
-2. **API Call Request Structure Creation:** Collaborated closely with Siva to help in the creation of a well-defined API call request structure.
+2. **Frontend Development and Refinement:** The primary focus was on the development and refinement of key pages, particularly the DMV pages within the React framework. This involved seamlessly incorporating features like adding and modifying car entry pages.
 
-3. **Project Overview Blog Website:** Took the initiative to create a Blog website for external stakeholders, providing a simplified and accessible overview of our project.
+3. **API Call Request Structure Creation:** Collaborated closely with Siva to help in the creation of a well-defined API call request structure, which ensures effective communication between the frontend & backend components.
+
+4. **Project Overview Blog Website:** Took the initiative to create a Blog website for external stakeholders, providing a simplified and accessible overview of our project, making it easy for others to comprehend our objectives, progress, and achievements.
 
 
 ## Siva, Disha, Radhika, Arvind, Aakash
