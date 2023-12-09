@@ -1,38 +1,521 @@
-.App {
-  text-align: center;
+
+.navbar-custom {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar-custom .navbar-brand {
+  color: #F8F8F8; /* Off White */
+}
+.navbar-custom .navbar-brand:hover {
+  color: #00BFFF; /* Bright Blue */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+p {
+color: #97FFF4;
+}
+.centered-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+}
+
+.form-container {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  margin-top: 2rem auto;
+  width: 100%;
+  max-width: 600px;
+}
+
+
+
+
+.search-bar-container {
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.inline-form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.error {
+  color: #C63D2F; /* Dark red for error messages */
+  margin-top: 5px;
+}
+
+.navbar-custom .nav-link {
+  color: #F8F8F8; /* Off White text for better readability */
+  margin-right: 10px;
+}
+
+.navbar-custom .nav-link:hover {
+  color: #00BFFF; /* Bright Blue on hover for links */
+}
+
+.inline-form .form-control {
+  width: auto;
+  flex-grow: 0;
+}
+
+.inline-form .btn {
+  padding: 0.5rem 1rem;
+}
+
+@media (max-width: 768px) {
+  .navbar-custom {
+    background-color: #708090; /* Slate Gray */
+  }
+
+  .centered-form {
+    padding-top: 1rem;
+  }
+
+  .form-container {
+    margin-top: 1rem;
+  }
+
+  .inline-form {
+    justify-content: center;
+    margin-top: 1rem;
   }
 }
 
-.App-header {
-  background-color: #282c34;
+.app-VehicleInfo-container {
+  font-family: 'Arial', sans-serif;
+}
+
+
+.vehicle-history-card ul {
+  padding-left: 20px;
+}
+
+h4{
+  color: #97FFF4;
+  text-align: center ;
+}
+.vehicle-history-card li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.vehicle-history-card li:last-child {
+  border-bottom: none;
+}
+
+.vehicle-specs-card .table {
+  margin-top: 20px;
+}
+
+.vehicle-specs-card .table th,
+.vehicle-specs-card .table td {
+  padding: 10px;
+  border-color: #ddd;
+}
+
+.vehicle-specs-card .table thead th {
+  background-color: #89CFF0; /* Light Blue */
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 1.2em;
+  }
+
+  .vehicle-specs-card .table {
+    font-size: 0.9em;
+  }
+}
+
+
+
+
+
+
+.form-heading {
+  color: white; 
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 3rem;
+  font-weight: 800;
+  text-shadow: 0 0 15px rgb(54, 52, 52);
+}
+
+
+/* Continuing from the previous styles */
+
+.form-control:focus {
+  border-color: #00BFFF; /* Bright Blue for focus */
+  box-shadow: 0 0 2px 2px rgba(0, 191, 255, 0.5); /* Bright Blue shadow for focus */
+}
+
+.btn {
+  background-color: #00BFFF; /* Bright Blue button */
+  color: #F8F8F8; /* Off White text */
+}
+
+.btn:hover {
+  background-color: #0F52BA; /* Deep Blue on hover */
+}
+
+/* Additional styles can be modified similarly */
+
+/* Styles for inline form in the Search component */
+.inline-form .form-control {
+  width: auto;
+  flex-grow: 0;
+  /* Add any specific styling for form control if needed */
+}
+
+.inline-form .btn {
+  padding: 0.5rem 1rem;
+  /* Add any specific styling for button if needed */
+}
+
+/* Adjust styles for smaller screens */
+@media (max-width: 768px) {
+  .navbar-custom {
+    background-color: #708090; /* Slate Gray for navbar background */
+  }
+
+  .centered-form,
+  .form-container,
+  .inline-form {
+    padding-top: 1rem;
+    margin-top: 1rem;
+  }
+}
+
+/* Styles for the vehicle information and card components */
+.app-VehicleInfo-container {
+  font-family: 'Arial', sans-serif;
+}
+
+.card {
+  margin: 20px;
+  padding: 20px;
+  background: #111; /* Off White for card background */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.card-title {
+  font-size: 1.5em;
+  color: #97fff7; 
+  margin-bottom: 20px;
+}
+
+.vehicle-history-card ul,
+.vehicle-specs-card .table {
+  padding-left: 20px;
+}
+
+.vehicle-history-card li,
+.vehicle-specs-card .table th,
+.vehicle-specs-card .table td {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.vehicle-history-card li:last-child {
+  border-bottom: none;
+}
+
+.vehicle-specs-card .table thead th {
+  background-color: #89CFF0; /* Light Blue for table headers */
+}
+
+@media (max-width: 768px) {
+  .card,
+  .card-title,
+  .vehicle-specs-card .table {
+    margin: 10px;
+    padding: 10px;
+    font-size: smaller;
+  }
+}
+
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  color: #0F52BA; /* Deep Blue for labels */
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: #00BFFF; /* Bright Blue for focus border */
+  box-shadow: 0 0 2px 2px rgba(0, 191, 255, 0.5); /* Bright Blue shadow for focus */
+}
+
+.btn {
+  background-color: #00BFFF; /* Bright Blue for buttons */
+  color: #F8F8F8; /* Off White text */
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0F52BA; /* Deep Blue on hover */
+}
+
+/* Specific styles for DMV pages */
+
+
+
+.dmv-page .form-group {
+  margin-bottom: 1.5rem;
+  color: #F8F8F8; /* Off-White for form text */
+}
+
+.dmv-page .form-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #F8F8F8; /* Off-White for labels */
+}
+
+.dmv-page .form-control {
+  font-size: 0.9rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #89CFF0;
+  color: #0F52BA;
+}
+
+.dmv-page .form-control:focus {
+  border-color: #00BFFF;
+  box-shadow: 0 0 2px 2px rgba(0, 191, 255, 0.5);
+}
+
+.dmv-page .btn {
+  font-size: 1rem;
+  background-color: #00BFFF;
+  color: #F8F8F8;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dmv-page .btn:hover {
+  background-color: #0F52BA;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .dmv-page {
+    background-size: auto;
+    padding: 1rem; /* Adjust padding for smaller screens */
+  }
+}
+
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .form-container {
+    max-width: 100%;
+  }
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .navbar-custom {
+    background-color: #708090; /* Slate Gray background */ /*Change to blue*/
+    padding: 10px 15px; /* Adjust padding */
+    text-align: center; /* Center-align the navbar items */
+
+    /* Adjust the font size for smaller screens if necessary */
+    font-size: 0.9em;
+
+    /* Adjust the navbar height, if needed */
+    height: auto;
+
+    /* Any other specific styles for mobile view */
+  }
+
+  .navbar-custom .nav-link {
+    padding: 5px 10px; /* Adjust padding for nav links */
+    display: block; /* Stack links vertically */
+    text-align: center; /* Center-align nav link text */
+  }
+
+  /* Adjust button sizes, if you have any in the navbar */
+  .navbar-custom .btn {
+    padding: 5px 10px; /* Adjust padding for buttons */
+    font-size: 0.8em; /* Reduce font size for buttons */
+  }
+
+  /* If there's a navbar-toggler button, adjust its size and placement */
+  .navbar-custom .navbar-toggler {
+    padding: 5px 10px; /* Adjust padding for toggle button */
+    /* Additional styles for toggle button */
+  }
+}
+
+
+/* SignInModal.css */
+
+.custom-input {
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+}
+
+.custom-button {
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+
+/* Your existing styles */
+
+
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  /* Your existing media queries */
+}
+.bg-container {
+  background-image: url('./black.jpg');
+  background-repeat: repeat-y;
+  background-size: auto; 
+  background-position: center;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #010100; 
+}
+
+
+.modal-content{
+  background: #111;
+  
+}
+
+.modal-header{
+  color: white;
+}
+.modal-title{
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.form-label{
+  color:#97FFF4
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.glow-on-hover {
+  width: 150px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #4400ff, #0080ff, #4444b0, #c5c7c4, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+.blue-bordered-button {
+  background-color: #111; /* Black background */
+  color: #97FFF4; /* Blue text */
+  border: 2px solid #97FFF4; /* Blue border */
+  padding: 10px 20px; /* Padding around the text */
+  text-align: center; /* Center the text inside the button */
+  text-decoration: none; /* No underline for text */
+  display: inline-block; /* Align it as inline-block */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+  border-radius: 5px; /* Rounded corners */
+  transition: all 0.3s; /* Transition for hover effect */
+}
+
+.blue-bordered-button:hover {
+  background-color: #97FFF4; /* Blue background on hover */
+  color: #111; /* White text on hover */
+}
+
+.b-bordered-button {
+  background-color: #97FFF4; /* Black background */
+  color: #111; /* Blue text */
+  border: 2px solid #111; /* Blue border */
+  padding: 10px 20px; /* Padding around the text */
+  text-align: center; /* Center the text inside the button */
+  text-decoration: none; /* No underline for text */
+  display: inline-block; /* Align it as inline-block */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+  border-radius: 5px; /* Rounded corners */
+  transition: all 0.3s; /* Transition for hover effect */
+}
+
+.b-bordered-button:hover {
+  background-color: #111; /* Blue background on hover */
+  color: #97FFF4; /* White text on hover */
 }

@@ -1,0 +1,19 @@
+.content-wrap {
+  flex: 1; /* This will make content-wrap take up all available space */
+}
+
+.footer {
+  background-color: black; /* Deep Blue */
+  color: #97fff4; /* Off White */
+  padding: 20px 0;
+  text-align: center;
+  position: fixed; /* Fix the position */
+  left: 0; /* Align to the left */
+  bottom: 0; /* Align to the bottom */
+  width: 100%; /* Full width */
+}
+
+.footer p {
+  margin: 0;
+  font-size: 14px;
+}
