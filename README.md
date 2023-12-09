@@ -2,7 +2,7 @@
 
 # Project Contributors
 
-## Radhika Gupta(Led the team, extensive contributor for Backend and Frontend, Major Contributor for UI design)
+## Radhika Gupta(Led the team, extensive contributor for Full-stack development, Major Contributor for UI design)
 
 ### Redesigned the complete UI in last 48 hours of presentation
 
